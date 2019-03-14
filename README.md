@@ -1,5 +1,26 @@
 # Docker workshop
 
+## Objetivo de aprendizaje
+
+Aportar a los participantes las capacidades para el uso de Docker. No se  sin demasiado énfasis en fundamentos o explicaciones de por qué suceden las cosas.
+
+## Requisitos
+
+### Docker instalado y servicio corriendo
+
+Verificar la instalación siguiendo [este documento](https://pilasguru.gitlab.io/Docker-GuiaParaElUsuario/chapter01/02verificar/).
+
+### docker-compose instalado 
+
+Verificación: 
+```
+$ docker-compose version
+docker-compose version 1.24.0-rc1, build 0f3d4dda
+docker-py version: 3.7.0
+CPython version: 3.6.6
+OpenSSL version: OpenSSL 1.1.0h  27 Mar 2018
+```
+
 ## Temario
 
 1. Generalidades
@@ -26,10 +47,19 @@
 	- Red de bridge
 	- Redes privadas entre contenedores
 6. Orquestación / Multiple contenedores
-	- Docker-compose (INARI)
+	- Docker-compose
 	- Docker socket
 
-## Calendario
+## Metodología
+
+Teórico-práctico
+
+## Público objetivo
+
+Tú que quieres usar Docker para correr tus aplicaciones.
+
+## Carga horaria y calendario
+
 ### 19/mar SESION 1 (dos horas)
 - Generalidades
 - Primeros pasos y uso básico
