@@ -2,7 +2,7 @@
 
 ## Objetivo de aprendizaje
 
-Aportar a los participantes las capacidades para el uso de Docker. No se  sin demasiado énfasis en fundamentos o explicaciones de por qué suceden las cosas.
+Aportar a los participantes las capacidades para el uso de Docker de forma rápida y directa. 
 
 ## Requisitos
 
@@ -60,19 +60,12 @@ Tú que quieres usar Docker para correr tus aplicaciones.
 
 ## Carga horaria y calendario
 
-### 19/mar SESION 1 (dos horas)
-- Generalidades
-- Primeros pasos y uso básico
-
-### 21/mar SESION 2
-- Imágenes
-
-### 26/mar SESION 3
-- Storage / Volúmenes
-- Redes docker
-
-### 28/mar SESION 4
-- Orquestación / Multiple contenedores
+| **Sesión** | **Fecha** | **Horario** | **Temas** |
+|:--|:--|:--|:--|
+| **1** | 19/mar | 9-10 | Generalidades<br>Primeros pasos y uso básico |
+| **2** | 21/mar | 9-10 | Imágenes |
+| **3** | 26/mar | 9-10 | Storage / Volúmenes<br>Redes docker |
+| **4** | 28/mar | 9-10 | Orquestación / Multiple contenedores |
 
 ## Bibliografía
 
