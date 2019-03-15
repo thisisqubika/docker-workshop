@@ -8,7 +8,7 @@ Aportar a los participantes las capacidades para el uso de Docker de forma rápi
 
 ### Docker instalado y servicio corriendo
 
-Verificar la instalación siguiendo [este documento](https://pilasguru.gitlab.io/Docker-GuiaParaElUsuario/chapter01/02verificar/).
+Verificar la instalación siguiendo [este documento](https://moove-it.github.io/docker-workshop/site/chapter01/02verificar/).
 
 ### docker-compose instalado 
 
