@@ -1,0 +1,43 @@
+site_name: Docker - Guía del Usuario
+theme: 
+  name: 'material'
+  language: 'es'
+  logo: 'images/docker-128.png'
+  palette:
+    primary: 'blue'
+    accent: 'light blue'
+nav:
+    - Introducción: index.md
+    - 1. Generalidades:
+      - chapter01/README.md
+      - chapter01/01funciona.md  
+      - chapter01/02verificar.md
+    - 2. Ejecución:
+      - chapter02/README.md
+      - chapter02/01autoejecutable.md
+      - chapter02/02comando.md
+      - chapter02/03shell.md
+      - chapter02/04servicio.md
+    - 3. Imágenes: 
+      - chapter03/README.md
+      - chapter03/01imagenes.md
+      - chapter03/02crear.md
+      - chapter03/03crear-contenedor.md
+      - chapter03/04crear-dockerfile.md
+      - chapter03/05capas.md
+      - chapter03/06subir.md
+    - 4. Filesystem:
+      - chapter04/README.md
+      - chapter04/01bind.md
+      - chapter04/02volume.md
+    - 5. Redes:
+      - chapter05/README.md 
+      - chapter05/01redcerrado.md
+      - chapter05/02redabierto.md
+      - chapter05/03redbridge.md
+      - chapter05/04redjuntos.md
+    - 6. Múltiple contenedores: 
+      - chapter06/README.md
+      - chapter06/02docker-compose.md
+    - About: about.md
+
