@@ -1,6 +1,6 @@
 # Verificación de la instalación
 
-_No es un objetivo de esta guía abordar la instalación de docker_. Si bien es un proceso sencillo, los requisitos y opciones de configuración varían según dónde se va a utilizar docker.
+_No es un objetivo de esta guía abordar la instalación de docker_. Si bien la instalación es un proceso sencillo, los requisitos y opciones de configuración varían según dónde se va a utilizar docker.
 
 Docker es nativo de sistemas operativos Linux y los procesos de instalación difieren de acuerdo a la [distribución y versión de Linux](https://docs.docker.com/engine/installation/linux/ubuntulinux/) que se use.  Pero en la actualidad, docker se puede instalar en otros sistemas operativos como [macOS](https://docs.docker.com/engine/installation/mac/) y [Windows](https://docs.docker.com/engine/installation/windows/).
 
@@ -93,3 +93,31 @@ Insecure Registries:
 Live Restore Enabled: false
 ```
 
+Es posible ejecutar un primer contenedor:
+
+```
+$ docker run --rm hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+$
+```

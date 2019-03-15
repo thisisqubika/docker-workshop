@@ -6,11 +6,17 @@ Aportar a los participantes las capacidades para el uso de Docker de forma rápi
 
 ## Requisitos
 
-### Docker instalado y servicio corriendo
+### a. Instalación máquina virtual
+
+[Utilizando vagrant](https://moove-it.github.io/docker-workshop/site/chapter01/03vagrant/)
+
+### b. Instalación en host (Mac)
+
+#### Docker instalado y servicio corriendo
 
 Verificar la instalación siguiendo [este documento](https://moove-it.github.io/docker-workshop/site/chapter01/02verificar/).
 
-### docker-compose instalado 
+#### docker-compose instalado 
 
 Verificación: 
 ```
@@ -50,14 +56,6 @@ OpenSSL version: OpenSSL 1.1.0h  27 Mar 2018
 	- Docker-compose
 	- Docker socket
 
-## Metodología
-
-Teórico-práctico
-
-## Público objetivo
-
-Tú que quieres usar Docker para correr tus aplicaciones.
-
 ## Carga horaria y calendario
 
 | **Sesión** | **Fecha** | **Horario** | **Temas** |
@@ -66,6 +64,14 @@ Tú que quieres usar Docker para correr tus aplicaciones.
 | **2** | 21/mar | 9-10 | Imágenes |
 | **3** | 26/mar | 9-10 | Storage / Volúmenes<br>Redes docker |
 | **4** | 28/mar | 9-10 | Orquestación / Multiple contenedores |
+
+## Metodología
+
+Teórico-práctico
+
+## Público objetivo
+
+Tú que quieres usar Docker para correr tus aplicaciones.
 
 ## Bibliografía
 
