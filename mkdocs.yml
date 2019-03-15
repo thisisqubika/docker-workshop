@@ -4,8 +4,8 @@ theme:
   language: 'es'
   logo: 'images/docker-128.png'
   palette:
-    primary: 'blue'
-    accent: 'light blue'
+    primary: 'indigo'
+    accent: 'blue'
 nav:
     - Introducción: index.md
     - 1. Generalidades:
