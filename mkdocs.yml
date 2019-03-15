@@ -10,8 +10,9 @@ nav:
     - Introducción: index.md
     - 1. Generalidades:
       - chapter01/README.md
-      - chapter01/01funciona.md  
+      - chapter01/03vagrant.md
       - chapter01/02verificar.md
+      - chapter01/01funciona.md  
     - 2. Ejecución:
       - chapter02/README.md
       - chapter02/01autoejecutable.md
