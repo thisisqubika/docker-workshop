@@ -125,6 +125,10 @@ $ docker container rm 3a49c40eee76
 ```
  
 
+### PRUNE
+
+`docker container prune` borra todos los contenedores que están detenidos. 
+
 ## Ejercicios
 
 ### 1.

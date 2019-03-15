@@ -1,6 +1,6 @@
 # Cómo funciona docker
 
-## Generalidades
+## Introducción
 
 Generalmente docker (o contenedores) se explican a través de las diferencias entre virtualización y contenedores y destacando los pro y contras de cada uno de ellos.
 
