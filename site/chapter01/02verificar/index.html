@@ -90,7 +90,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href="../.." title="Docker - Guía del Usuario" class="md-header-nav__button md-logo">
           
-            <img src="../../images/docker-128.png" width="24" height="24">
+            <img src="../../images/mooveit-iso-white128.png" width="24" height="24">
           
         </a>
       </div>
@@ -162,7 +162,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="../.." title="Docker - Guía del Usuario" class="md-nav__button md-logo">
       
-        <img src="../../images/docker-128.png" width="48" height="48">
+        <img src="../../images/mooveit-iso-white128.png" width="48" height="48">
       
     </a>
     Docker - Guía del Usuario
@@ -738,11 +738,11 @@
 <p><em>No es un objetivo de esta guía abordar la instalación de docker</em>. Si bien la instalación es un proceso sencillo, los requisitos y opciones de configuración varían según dónde se va a utilizar docker.</p>
 <p>Docker es nativo de sistemas operativos Linux y los procesos de instalación difieren de acuerdo a la <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">distribución y versión de Linux</a> que se use.  Pero en la actualidad, docker se puede instalar en otros sistemas operativos como <a href="https://docs.docker.com/engine/installation/mac/">macOS</a> y <a href="https://docs.docker.com/engine/installation/windows/">Windows</a>.</p>
 <h2 id="verificacion-de-la-instalacion_1">Verificación de la instalación</h2>
-<p>Lo primero es consultar la versión instalada de docker:</p>
+<p>Primero es consultar la versión instalada de docker:</p>
 <pre><code>$ docker version
 </code></pre>
 
-<p>que producirá una salida semejante a esta:</p>
+<p>Muestra versión del <em>cliente</em> y versión del <em>servidor</em> (si está corriendo):</p>
 <pre><code>Client:
  Version:      18.03.1-ce
  API version:  1.37
@@ -764,7 +764,7 @@ Server:
   Experimental: false
 </code></pre>
 
-<p>Cómo puede ver, en su equipo está corriendo un <code>daemon</code> llamado Docker Engine (Server) que será encargado de ejecutar y mantener   los contenedores.  Por otro lado dispone de un <code>cliente</code> que es el comando docker propiamente dicho.</p>
+<p>Está corriendo el <code>daemon</code> Docker Engine (<em>Server</em>) que ejecuta (crea) y mantiene los contenedores. Además, dispone de un <em>cliente</em> que es el comando <code>docker</code> propiamente dicho.</p>
 <p>Y seguidamente con el comando</p>
 <pre><code>$ docker system info
 </code></pre>
@@ -816,7 +816,14 @@ Insecure Registries:
 Live Restore Enabled: false
 </code></pre>
 
-<p>Es posible ejecutar un primer contenedor:</p>
+<p>Es posible ejecutar un primer contenedor para verificar los el funcionamiento <em>Docker Engine</em>:</p>
+<ul>
+<li>Registry</li>
+<li>Network</li>
+<li>CGroups</li>
+<li>System</li>
+<li>etc.</li>
+</ul>
 <pre><code>$ docker run --rm hello-world
 
 Hello from Docker!

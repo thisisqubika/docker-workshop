@@ -6,13 +6,13 @@ Docker es nativo de sistemas operativos Linux y los procesos de instalación dif
 
 ## Verificación de la instalación
 
-Lo primero es consultar la versión instalada de docker:
+Primero es consultar la versión instalada de docker:
 
 ```
 $ docker version
 ```
 
-que producirá una salida semejante a esta:
+Muestra versión del _cliente_ y versión del _servidor_ (si está corriendo):
 
 ```
 Client:
@@ -36,7 +36,7 @@ Server:
   Experimental: false
 ```
 
-Cómo puede ver, en su equipo está corriendo un `daemon` llamado Docker Engine (Server) que será encargado de ejecutar y mantener   los contenedores.  Por otro lado dispone de un `cliente` que es el comando docker propiamente dicho.
+Está corriendo el `daemon` Docker Engine (*Server*) que ejecuta (crea) y mantiene los contenedores. Además, dispone de un *cliente* que es el comando `docker` propiamente dicho.
 
 Y seguidamente con el comando
 
@@ -93,7 +93,13 @@ Insecure Registries:
 Live Restore Enabled: false
 ```
 
-Es posible ejecutar un primer contenedor:
+Es posible ejecutar un primer contenedor para verificar los el funcionamiento *Docker Engine*:
+
+* Registry
+* Network
+* CGroups
+* System
+* etc.
 
 ```
 $ docker run --rm hello-world
