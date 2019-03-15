@@ -1,0 +1,1506 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="es">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Crear usando Dockerfile - Docker - Guía del Usuario</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#crear-usando-dockerfile" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Docker - Guía del Usuario" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/docker-128.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Docker - Guía del Usuario
+              </span>
+              <span class="md-header-nav__topic">
+                Crear usando Dockerfile
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Docker - Guía del Usuario" class="md-nav__button md-logo">
+      
+        <img src="../../images/docker-128.png" width="48" height="48">
+      
+    </a>
+    Docker - Guía del Usuario
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      1. Generalidades
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        1. Generalidades
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter01/" title="Generalidades de docker" class="md-nav__link">
+      Generalidades de docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter01/01funciona/" title="Cómo funciona docker" class="md-nav__link">
+      Cómo funciona docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter01/02verificar/" title="Verificación de la instalación" class="md-nav__link">
+      Verificación de la instalación
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      2. Ejecución
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        2. Ejecución
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter02/" title="Primeros pasos" class="md-nav__link">
+      Primeros pasos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter02/01autoejecutable/" title="Docker autoejecutable" class="md-nav__link">
+      Docker autoejecutable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter02/02comando/" title="Docker como comando" class="md-nav__link">
+      Docker como comando
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter02/03shell/" title="Docker como shell" class="md-nav__link">
+      Docker como shell
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter02/04servicio/" title="Docker como servicio" class="md-nav__link">
+      Docker como servicio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      3. Imágenes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        3. Imágenes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Imágenes docker" class="md-nav__link">
+      Imágenes docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01imagenes/" title="Gestión de imágenes" class="md-nav__link">
+      Gestión de imágenes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02crear/" title="Crear imágenes propias" class="md-nav__link">
+      Crear imágenes propias
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03crear-contenedor/" title="Crear a partir de un contenedor" class="md-nav__link">
+      Crear a partir de un contenedor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Crear usando Dockerfile
+      </label>
+    
+    <a href="./" title="Crear usando Dockerfile" class="md-nav__link md-nav__link--active">
+      Crear usando Dockerfile
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-dockerfile" title="Uso de Dockerfile" class="md-nav__link">
+    Uso de Dockerfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" title="Build" class="md-nav__link">
+    Build
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-del-dockerfile" title="Estructura del Dockerfile" class="md-nav__link">
+    Estructura del Dockerfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-del-dockerignore" title="Estructura del .dockerignore" class="md-nav__link">
+    Estructura del .dockerignore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-del-dockerfile" title="Instrucciones del Dockerfile" class="md-nav__link">
+    Instrucciones del Dockerfile
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from" title="FROM" class="md-nav__link">
+    FROM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintainer" title="MAINTAINER" class="md-nav__link">
+    MAINTAINER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" title="RUN" class="md-nav__link">
+    RUN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label" title="LABEL" class="md-nav__link">
+    LABEL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose" title="EXPOSE" class="md-nav__link">
+    EXPOSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env" title="ENV" class="md-nav__link">
+    ENV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" title="ADD" class="md-nav__link">
+    ADD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy" title="COPY" class="md-nav__link">
+    COPY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrypoint" title="ENTRYPOINT" class="md-nav__link">
+    ENTRYPOINT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd" title="CMD" class="md-nav__link">
+    CMD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" title="VOLUME" class="md-nav__link">
+    VOLUME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" title="USER" class="md-nav__link">
+    USER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workdir" title="WORKDIR" class="md-nav__link">
+    WORKDIR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-de-dockerfile" title="Ejemplos de Dockerfile" class="md-nav__link">
+    Ejemplos de Dockerfile
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-app-dockerfile-example" title="Nodejs app Dockerfile example:" class="md-nav__link">
+    Nodejs app Dockerfile example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-dockerfile-example" title="Nginx Dockerfile example:" class="md-nav__link">
+    Nginx Dockerfile example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" title="Ejercicios:" class="md-nav__link">
+    Ejercicios:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1." class="md-nav__link">
+    1.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05capas/" title="Capas de las imágenes" class="md-nav__link">
+      Capas de las imágenes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
+      Subir (compartir) imágenes propias
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      4. Filesystem
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        4. Filesystem
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter04/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter04/01bind/" title="Espacio de host" class="md-nav__link">
+      Espacio de host
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter04/02volume/" title="Volume" class="md-nav__link">
+      Volume
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      5. Redes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        5. Redes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter05/" title="Redes de contenedores" class="md-nav__link">
+      Redes de contenedores
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter05/01redcerrado/" title="Contenedores cerrados" class="md-nav__link">
+      Contenedores cerrados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter05/02redabierto/" title="Contenedores abiertos" class="md-nav__link">
+      Contenedores abiertos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter05/03redbridge/" title="Contenedores detrás de bridges" class="md-nav__link">
+      Contenedores detrás de bridges
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter05/04redjuntos/" title="Contenedores juntos" class="md-nav__link">
+      Contenedores juntos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      6. Múltiple contenedores
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        6. Múltiple contenedores
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter06/" title="Multiple contenedores" class="md-nav__link">
+      Multiple contenedores
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../chapter06/02docker-compose/" title="docker-compose" class="md-nav__link">
+      docker-compose
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-dockerfile" title="Uso de Dockerfile" class="md-nav__link">
+    Uso de Dockerfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" title="Build" class="md-nav__link">
+    Build
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-del-dockerfile" title="Estructura del Dockerfile" class="md-nav__link">
+    Estructura del Dockerfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-del-dockerignore" title="Estructura del .dockerignore" class="md-nav__link">
+    Estructura del .dockerignore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-del-dockerfile" title="Instrucciones del Dockerfile" class="md-nav__link">
+    Instrucciones del Dockerfile
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from" title="FROM" class="md-nav__link">
+    FROM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintainer" title="MAINTAINER" class="md-nav__link">
+    MAINTAINER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" title="RUN" class="md-nav__link">
+    RUN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label" title="LABEL" class="md-nav__link">
+    LABEL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose" title="EXPOSE" class="md-nav__link">
+    EXPOSE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env" title="ENV" class="md-nav__link">
+    ENV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" title="ADD" class="md-nav__link">
+    ADD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy" title="COPY" class="md-nav__link">
+    COPY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrypoint" title="ENTRYPOINT" class="md-nav__link">
+    ENTRYPOINT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd" title="CMD" class="md-nav__link">
+    CMD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" title="VOLUME" class="md-nav__link">
+    VOLUME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" title="USER" class="md-nav__link">
+    USER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workdir" title="WORKDIR" class="md-nav__link">
+    WORKDIR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-de-dockerfile" title="Ejemplos de Dockerfile" class="md-nav__link">
+    Ejemplos de Dockerfile
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-app-dockerfile-example" title="Nodejs app Dockerfile example:" class="md-nav__link">
+    Nodejs app Dockerfile example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-dockerfile-example" title="Nginx Dockerfile example:" class="md-nav__link">
+    Nginx Dockerfile example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" title="Ejercicios:" class="md-nav__link">
+    Ejercicios:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1." class="md-nav__link">
+    1.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="crear-usando-dockerfile">Crear usando Dockerfile</h1>
+<p><em>Give a sysadmin an image and their app will be up-to-date for a day, give a sysadmin a Dockerfile and their app will always be up-to-date</em> </p>
+<p><code>Dockerfile</code> es un archivo de texto que contiene un conjunto de instrucciones o comandos para la creación de una imagen docker. Llamando a la función <code>docker build</code> se leen las instrucciones del Dockerfile y se construye una imagen que se guardará en el repositorio local.</p>
+<h2 id="uso-de-dockerfile">Uso de Dockerfile</h2>
+<p>Para la construcción de una imagen se utiliza el comando <code>docker  build ${CONTEXT}</code>. </p>
+<p>El <code>${CONTEXT}</code> son todos los archivos que necesita el Dockerfile para construir la imagen; puede ser una carpeta de nuestra propia máquina o una URL de un repositorio git. </p>
+<p>El proceso de <code>build</code> lo ejecuta Docker Daemon y no el utilitario docker. Todo el <code>${CONTEXT}</code> es enviado repulsivamente al docker daemon, por lo que no es recomendable utilizar un path con demasiados archivos, ya que todos serán enviados. </p>
+<p>El archivo <code>Dockerfile</code> debe estar localizado en el raíz del <code>${CONTEXT}</code></p>
+<p>También se puede utilizar un archivo <code>.dockerignore</code> para especificar los archivos y carpetas que deben ser excluidos del proceso de construcción de la imagen y que no serán enviados al docker daemon, lo que mejorará la performance del proceso de <code>build</code>.</p>
+<h2 id="build">Build</h2>
+<p>El <code>Dockerfile</code> siempre parte de una imagen creada, mediante la instrucción <code>FROM</code>. </p>
+<pre><code>FROM node:latest
+</code></pre>
+
+<p>Con esta sola instrucción ya podemos crear una imagen, utilizando como <code>${CONTEXT}</code> el directorio actual:</p>
+<pre><code>$ docker build .
+Sending build context to Docker daemon 2.048 kB
+Step 1 : FROM node:latest
+---&gt; 36dc1bb7a52b
+Successfully built 36dc1bb7a52b
+</code></pre>
+
+<p>Es posible indicar la ubicación del Dockerfile con el argumento <code>-f</code>:</p>
+<pre><code>docker build -f image/Dockerfile image/
+</code></pre>
+
+<p>También podemos ponerle nombre o etiquetar la imagen a la vez que la construimos utilizando el argumento <code>-t</code> y el nombre que le daremos, en el formato <code>-t ${tag}:${version}</code>:</p>
+<pre><code>$ docker build -t pilasguru/nodejs .
+
+$ docker build -t pilasguru/nodejs:0.0.1 .
+</code></pre>
+
+<p>Una vez construída podemos revisar que la imagen esté en nuestro repositorio</p>
+<pre><code>$ docker images pilasguru/nodejs
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+Pilasguru/nodejs     0.0.1               38dc1bb7a34c        2 weeks ago         655.5 MB
+Pilasguru/nodejs     latest              38dc1bb7a34c        2 weeks ago         655.5 MB
+</code></pre>
+
+<h2 id="estructura-del-dockerfile">Estructura del Dockerfile</h2>
+<p>El formato del archivo Dockerfile es:</p>
+<pre><code># Comentario
+
+INSTRUCCION argument1 argumento2 argumento3 ...
+</code></pre>
+
+<p>La INSTRUCCION no es case-sensitive pero por costumbre se suele usar en mayúscula. </p>
+<p>El <strong>orden de las instrucciones es importante</strong> ya que debe seguir el orden del proceso de construcción de la imagen.</p>
+<h2 id="estructura-del-dockerignore">Estructura del .dockerignore</h2>
+<p>El archivo <code>.dockerignore</code> tiene un formato como el archivo <code>.gitignore</code> y es un listado por renglón de los archivos o carpetas que son ignorados:</p>
+<pre><code># comentario
+*/temp*
+*/*/temp*
+temp?
+testing/
+.git/
+</code></pre>
+
+<p>Los asteriscos se utilizan como comodines e incluyen tanto archivos, carpetas y en ese caso las sub-carpetas.</p>
+<h2 id="instrucciones-del-dockerfile">Instrucciones del Dockerfile</h2>
+<h3 id="from">FROM</h3>
+<p>Un Dockerfile válido debe tener este instrucción como su primer instrucción e indica la imagen que se utilizará para construir la nueva imagen.  Docker daemon primero verificará si la imagen existe localmente, si no procederá a descargarla de docker hub. </p>
+<p>Se puede utilizar de tres formas:</p>
+<pre><code>FROM &lt;imagen&gt;
+FROM &lt;imagen:tag&gt;
+FROM &lt;imagen&gt;@&lt;digest&gt;
+</code></pre>
+
+<p>FROM debe ser la primer línea no comentada en el Dockerfile. Se puede utilizar múltiples veces en el mismo Dockerfile. Tanto el <code>tag</code> como <code>digest</code> son opcionales y permiten tratar de obtener la imagen exacta, pero de no estar disponible se usará la última (<code>latest</code>)</p>
+<h3 id="maintainer">MAINTAINER</h3>
+<p>Permite indicar el autor de la imagen y se utiliza asi:</p>
+<pre><code>MAINTAINER &lt;nombre&gt;
+</code></pre>
+
+<h3 id="run">RUN</h3>
+<p>Permite indicar comandos que serán ejecutados en una nueva capa sobre la imagen (del FROM) en el proceso de construcción y ese resultado será guardado para pasarlo, opcionalmente, a un siguiente RUN que volverá a crear una nueva capa.</p>
+<p>RUN tiene dos formatos: <strong>shell</strong> o <strong>exec</strong>:</p>
+<p><code>RUN &lt;comando&gt;</code> es el formato shell. El comando se ejecutará en un shell que por defecto es <code>/bin/sh -c</code> de Linux o <code>cmd /S /C</code> de Windows. </p>
+<p><code>RUN [“ejecutable”, “argumento1”, “argumento2”, “argumento3” …]</code></p>
+<p>Un ejemplo de <code>Dockerfile</code> hasta ahora, quedaría construido de la siguiente forma:</p>
+<pre><code># Ejemplo
+# ----------
+FROM node:latest
+MAINTAINER pilasguru
+RUN /bin/sh -c 'echo &quot;*** hello Dockerfile!! ***&quot;'
+RUN [&quot;npm&quot;, &quot;--version&quot;]
+</code></pre>
+
+<p>Creando una imagen con este ejemplo, tendremos la siguiente salida:</p>
+<pre><code>➜  docker build -t pilasguru/nodejs:0.0.3 .
+…
+Step 3 : RUN /bin/sh -c 'echo &quot;*** hello Dockerfile!! ***&quot;'
+ ---&gt; Running in 6ebfa85f7683
+*** hello Dockerfile!! ***
+…
+Step 4 : RUN npm --version
+ ---&gt; Running in fc9dab7cf8c2
+3.10.10
+…
+</code></pre>
+
+<h3 id="label">LABEL</h3>
+<p>Esta instrucción incluye metadatos a la imagen en el formato de pares llave-valor:</p>
+<pre><code>LABEL &lt;llave&gt;=&lt;valor&gt; &lt;llave&gt;=&lt;valor&gt; &lt;llae&gt;=&lt;valor&gt; ...
+</code></pre>
+
+<p>Y se pueden utilizar múltiples líneas de LABEL:</p>
+<pre><code>LABEL &quot;com.ejemplo.imagen&quot;=&quot;Node JS imagen LABEL ejemplo&quot;
+LABEL version=&quot;0.0.4&quot;
+LABEL descripcion=&quot;valores pueden ser \
+separados en varias líneas&quot;
+</code></pre>
+
+<p>Y por supuesto que se pueden indicar varios pares de llaves=valor en la misma instrucción LABEL.</p>
+<p>Veamos la construcción de una imagen y sus metadatos:</p>
+<pre><code>$ docker build -t pilasguru/nodejs:0.0.3 . --no-cache=true
+
+$ docker inspect pilasguru/nodejs:0.0.3
+…
+&quot;Labels&quot;: {
+                &quot;com.ejemplo.imagen&quot;: &quot;Node JS image LABEL ejemplo&quot;,
+                &quot;descripcion&quot;: &quot;valores pueden ser
+                Separados en varias líneas&quot;,
+                &quot;version&quot;: &quot;0.0.4&quot;
+            }
+…
+</code></pre>
+
+<h3 id="expose">EXPOSE</h3>
+<p>Esta instrucción informa a Docker que el contenedor escuchará en un determinado puerto cuando esté corriendo. </p>
+<pre><code>EXPOSE &lt;port&gt; [&lt;port&gt;...]
+</code></pre>
+
+<p>No significa que el puerto será accesible desde el host. Para construir la red, se debe utilizar el argumento <code>-p</code> que publicará el punto al correr docker.</p>
+<h3 id="env">ENV</h3>
+<p>Permite configurar variables de entorno en el contenedor cuando esté corriendo.</p>
+<pre><code>ENV mysql_password passw0rd
+ENV src_folder ./src/app
+</code></pre>
+
+<p>Se pueden consultar las declaraciones de ENV con el comando <code>inspect</code>:</p>
+<pre><code>$ docker inspect linoxide/nodejs:0.0.3
+…
+&quot;Env&quot;: [             &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;,
+                &quot;NPM_CONFIG_LOGLEVEL=info&quot;,
+                &quot;NODE_VERSION=7.2.1&quot;,
+                &quot;mysql_password=passw0rd&quot;,
+                &quot;src_folder=./src/app&quot;
+            ] …
+</code></pre>
+
+<h3 id="add">ADD</h3>
+<p>La instrucción ADD copia nuevos archivos, directorios o archivos remotos (desde una URL) desde un <code>&lt;src&gt;</code> y los agrega a la imagen en el lugar indicado en <code>&lt;dest&gt;</code>.</p>
+<p>Ejemplos:</p>
+<pre><code>ADD . /app/
+
+ADD [ &quot;dir con espacios/&quot; &quot;/app/&quot; ]
+</code></pre>
+
+<p>En los dos ejemplos de arriba se copian los archivos de los directorios indicados en la carpeta <code>/app/</code> dentro de la imagen.</p>
+<p>Si el <code>&lt;dest&gt;</code> no finaliza barra al final, se considera un archivo y en el se escribirá el contenido de <code>&lt;src&gt;</code>.</p>
+<p>Si <code>&lt;dest&gt;</code> no existe, será creado.</p>
+<p>Se permite el uso de asteriscos en <code>&lt;src&gt;</code> como ser <code>arch*</code> o <code>readm?.txt</code>.</p>
+<p>Si el origen <code>&lt;src&gt;</code> es un compactado (tar, gzip, bzip2 o xz) la  ejecución de ADD lo descompactará dentro de <code>&lt;dest&gt;</code>.</p>
+<h3 id="copy">COPY</h3>
+<p>COPY es muy similar a ADD: hace lo mismo y tiene el mismo formato. </p>
+<p>La diferencia es que COPY no acepta URLs como <code>&lt;src&gt;</code> y en caso de ser un archivo compactado, no lo descompactará al copiarlo dentro de la imagen.</p>
+<h3 id="entrypoint">ENTRYPOINT</h3>
+<p>Este comando permite especificar un comando que será siempre ejecutado cada vez que se inicie el container.</p>
+<pre><code>ENTRYPOINT [&quot;/bin/echo&quot;, &quot;Hola pilasguru&quot;]
+</code></pre>
+
+<pre><code>$ docker build -t pilasguru/nodejs:0.0.3 . --no-cache=true
+
+$ docker run -it --name minodejs pilasguru/nodejs:0.0.3
+Hola pilasguru
+</code></pre>
+
+<p>Tenga en cuenta que <strong>solamente un ENTRYPOINT</strong> es permitido en el Dockerfile.</p>
+<h3 id="cmd">CMD</h3>
+<p>Al igual que ENTRYPOINT permite especificar comandos a ejecutar cuando se inicie el container y también, <strong>solamente un CMD</strong> es permitido en el Dockerfile.</p>
+<p>La característica de CMD es que será omitido en caso de que el contenedor se inicie especificando otro comando.</p>
+<p>Si un Dockerfile especifica:</p>
+<pre><code>ENTRYPOINT [&quot;/bin/echo&quot;, &quot;Hola pilasguru&quot;]
+CMD  [&quot;/bin/echo&quot; &quot;Hola Mundo!!&quot;]
+</code></pre>
+
+<p>Y construímos la imagen:</p>
+<pre><code>$ docker build -t pilasguru/nodejs:0.0.3 . --no-cache=true
+</code></pre>
+
+<p>Y ejecutamos: </p>
+<pre><code>$ docker run -it --name minodejs pilasguru/nodejs:0.0.3
+Hola pilasguru
+Hola Mundo!!  
+</code></pre>
+
+<p>Ahora si creamos un segundo comando, pero indicando un comando:</p>
+<pre><code>$ docker run -it --name minodejs pilasguru/nodejs:0.0.3 echo &quot;Que onda!&quot;
+Hola pilasguru
+Que onda!  
+</code></pre>
+
+<h3 id="volume">VOLUME</h3>
+<p>La instrucción VOLUME creara un punto de montado con el nombre especificado y tendrá el filesystem externo al contenedor</p>
+<pre><code>VOLUME /var/log
+</code></pre>
+
+<h3 id="user">USER</h3>
+<p>La instrucción USER seguido del <code>nombre</code> o <code>UID</code> indica bajo que usuario correrán las instrucciones RUN, CMD o ENTRYPOINT.</p>
+<h3 id="workdir">WORKDIR</h3>
+<p>WORKDIR permite indicar el directorio en el cual los comandos de RUN, CMD, ENTRYPOINT, COPY y ADD serán ejecutados.  Si el directorio WORKDIR no existe, será creado. </p>
+<p>WORKDIR puede ser visto como el <code>home</code> del contenedor</p>
+<h2 id="ejemplos-de-dockerfile">Ejemplos de Dockerfile</h2>
+<p>Please see the comments in each Dockerfile example.</p>
+<h3 id="nodejs-app-dockerfile-example">Nodejs app Dockerfile example:</h3>
+<pre><code>FROM node:argon
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+# Install app dependencies
+COPY package.json /usr/src/app/
+RUN npm install
+# Bundle app source
+COPY . /usr/src/app
+EXPOSE 8080
+CMD [ &quot;npm&quot;, &quot;start&quot; ]
+</code></pre>
+
+<h3 id="nginx-dockerfile-example">Nginx Dockerfile example:</h3>
+<pre><code>FROM debian:jessie
+MAINTAINER NGINX Docker Maintainers &quot;docker-maint@nginx.com&quot;
+ENV NGINX_VERSION 1.11.7-1~jessie
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+     &amp;&amp; echo &quot;deb http://nginx.org/packages/mainline/debian/ jessie nginx&quot; &gt;&gt; /etc/apt/sources.list \
+     &amp;&amp; apt-get update \
+     &amp;&amp; apt-get install --no-install-recommends --no-install-suggests -y \
+                               ca-certificates \
+                               nginx=${NGINX_VERSION} \
+                               nginx-module-xslt \
+                               nginx-module-geoip \
+                               nginx-module-image-filter \
+                               nginx-module-perl \
+                               nginx-module-njs \
+                               gettext-base \
+     &amp;&amp; rm -rf /var/lib/apt/lists/*
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+     &amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log
+EXPOSE 80 443
+CMD [ &quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot; ]
+</code></pre>
+
+<hr />
+<h2 id="ejercicios">Ejercicios:</h2>
+<h3 id="1">1.</h3>
+<p>Crear un archivo con el nombre <code>index.js</code> con el siguiente contenido:</p>
+<pre><code>var os = require(&quot;os&quot;);
+var hostname = os.hostname();
+console.log(&quot;Un saludo desde &quot; + hostname);
+</code></pre>
+
+<p>Crear un archivo con el nombre <code>Dockerfile</code> con el siguiente contenido.</p>
+<pre><code>FROM alpine
+RUN apk update &amp;&amp; apk adk nodejs
+COPY . /app
+WORKDIR /app
+CMD [&quot;node&quot;,&quot;index.js&quot;]
+</code></pre>
+
+<p>Con el comando <code>build</code> construimos la imagen que seguirá el script configurado en el Dockerfile que se busca en el directorio actual con el último punto</p>
+<pre><code>docker image build -t hello:v0.1 .
+</code></pre>
+
+<pre><code>Sending build context to Docker daemon  3.072kB
+Step 1/5 : FROM alpine
+ ---&gt; 3fd9065eaf02
+Step 2/5 : RUN apk update &amp;&amp; apk add nodejs
+ ---&gt; Running in 867c66ddedd4
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.7/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.7/community/x86_64/APKINDEX.tar.gz
+v3.7.0-190-g3da66f61a4 [http://dl-cdn.alpinelinux.org/alpine/v3.7/main]
+v3.7.0-184-ge62f3c3781 [http://dl-cdn.alpinelinux.org/alpine/v3.7/community]
+OK: 9054 distinct packages available
+(1/10) Installing ca-certificates (20171114-r0)
+(2/10) Installing nodejs-npm (8.9.3-r1)
+(3/10) Installing c-ares (1.13.0-r0)
+(4/10) Installing libcrypto1.0 (1.0.2o-r0)
+(5/10) Installing libgcc (6.4.0-r5)
+(6/10) Installing http-parser (2.7.1-r1)
+(7/10) Installing libssl1.0 (1.0.2o-r0)
+(8/10) Installing libstdc++ (6.4.0-r5)
+(9/10) Installing libuv (1.17.0-r0)
+(10/10) Installing nodejs (8.9.3-r1)
+Executing busybox-1.27.2-r7.trigger
+Executing ca-certificates-20171114-r0.trigger
+OK: 61 MiB in 21 packages
+Removing intermediate container 867c66ddedd4
+ ---&gt; 9f2675ec7ebd
+Step 3/5 : COPY . /app
+ ---&gt; 3dfd8536a240
+Step 4/5 : WORKDIR /app
+Removing intermediate container c56e9d8a8eb2
+ ---&gt; 6e9870377075
+Step 5/5 : CMD [&quot;node&quot;,&quot;index.js&quot;]
+ ---&gt; Running in 8b80c4c4109d
+Removing intermediate container 8b80c4c4109d
+ ---&gt; 14ddb4369169
+Successfully built 14ddb4369169
+Successfully tagged hello:v0.1
+</code></pre>
+
+<p>Con el comando <code>docker image ls</code> se puede ver la imagen recién creada:</p>
+<pre><code>REPOSITORY                      TAG                 IMAGE ID            CREATED              SIZE
+hello                           v0.1                14ddb4369169        About a minute ago   50.2MB
+</code></pre>
+
+<pre><code>docker container run hello:v0.1
+</code></pre>
+
+<hr />
+<h2 id="referencias">Referencias:</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/getstarted/step_four/">https://docs.docker.com/engine/getstarted/step_four/</a></li>
+<li><a href="https://docs.docker.com/engine/tutorials/dockerimages/">https://docs.docker.com/engine/tutorials/dockerimages/</a></li>
+<li><a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../03crear-contenedor/" title="Crear a partir de un contenedor" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Crear a partir de un contenedor
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../05capas/" title="Capas de las imágenes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Capas de las imágenes
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.es.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
