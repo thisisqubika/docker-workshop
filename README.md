@@ -72,11 +72,7 @@ Tú que quieres usar Docker para correr tus aplicaciones.
 ### Docker - Guía del Usuario
 De Rodolfo Pilas
 
-Publicación: [https://pilasguru.gitlab.io/Docker-GuiaParaElUsuario/](https://pilasguru.gitlab.io/Docker-GuiaParaElUsuario/)
+Publicación: [https://moove-it.github.io/docker-workshop/site/](https://moove-it.github.io/docker-workshop/site/)
 
-Repositorio: [https://github.com/pilasguru/Docker-GuiaParaElUsuario](https://github.com/pilasguru/Docker-GuiaParaElUsuario)
+Repositorio: [https://github.com/moove-it/docker-workshop](https://github.com/moove-it/docker-workshop)
 
-### Introduction to Docker
-De Juan Andres Zeni
-
-[https://docs.google.com/presentation/d/1pu32bprA2jjYLWia9NRgp_B90JOfXCdXn_CQ1xLOK4I/edit#slide=id.p1](https://docs.google.com/presentation/d/1pu32bprA2jjYLWia9NRgp_B90JOfXCdXn_CQ1xLOK4I/edit#slide=id.p1)
