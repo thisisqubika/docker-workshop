@@ -447,8 +447,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build" title="Build" class="md-nav__link">
-    Build
+  <a href="#build" title="BUILD" class="md-nav__link">
+    BUILD
   </a>
   
 </li>
@@ -661,8 +661,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
-      Subir (compartir) imágenes propias - PUSH
+    <a href="../06subir/" title="Registry" class="md-nav__link">
+      Registry
     </a>
   </li>
 
@@ -904,8 +904,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build" title="Build" class="md-nav__link">
-    Build
+  <a href="#build" title="BUILD" class="md-nav__link">
+    BUILD
   </a>
   
 </li>
@@ -1110,12 +1110,12 @@
 <p><em>Give a sysadmin an image and their app will be up-to-date for a day, give a sysadmin a Dockerfile and their app will always be up-to-date</em> </p>
 <p><code>Dockerfile</code> es un archivo de texto que contiene un conjunto de instrucciones o comandos para la creación de una imagen docker. Llamando a la función <code>docker build</code> se leen las instrucciones del Dockerfile y se construye una imagen que se guardará en el repositorio local.</p>
 <h2 id="uso-de-dockerfile">Uso de Dockerfile</h2>
-<p>Para la construcción de una imagen se utiliza el comando <code>docker  build ${CONTEXT}</code>. </p>
+<p>Para la construcción de una imagen se utiliza el comando <code>docker build ${CONTEXT}</code>. </p>
 <p>El <code>${CONTEXT}</code> son todos los archivos que necesita el Dockerfile para construir la imagen; puede ser una carpeta de nuestra propia máquina o una URL de un repositorio git. </p>
 <p>El proceso de <code>build</code> lo ejecuta Docker Daemon y no el utilitario docker. Todo el <code>${CONTEXT}</code> es enviado a docker daemon, por lo que no es recomendable utilizar un path con demasiados archivos, ya que todos serán enviados. </p>
 <p>El archivo <code>Dockerfile</code> debe estar localizado en el raíz del <code>${CONTEXT}</code></p>
 <p>También se puede utilizar un archivo <code>.dockerignore</code> para especificar los archivos y carpetas que deben ser excluidos del proceso de construcción de la imagen y que no serán enviados al docker daemon, lo que mejorará la performance del proceso de <code>build</code>.</p>
-<h2 id="build">Build</h2>
+<h2 id="build">BUILD</h2>
 <p>El <code>Dockerfile</code> siempre parte de una imagen creada, mediante la instrucción <code>FROM</code>. </p>
 <pre><code>FROM node:latest
 </code></pre>
@@ -1185,15 +1185,13 @@ FROM &lt;imagen&gt;@&lt;digest&gt;
 <p>Permite indicar comandos que serán ejecutados en una nueva capa sobre la imagen (del FROM) en el proceso de construcción y ese resultado será guardado para pasarlo, opcionalmente, a un siguiente RUN que volverá a crear una nueva capa.</p>
 <p>RUN tiene dos formatos:</p>
 <ul>
-<li>
-<p><strong>shell</strong>\
-<code>RUN &lt;comando&gt;</code> es el formato <em>shell</em>. El comando se ejecutará en un shell que por defecto es <code>/bin/sh -c</code> de Linux o <code>cmd /S /C</code> de Windows. </p>
-</li>
-<li>
-<p><strong>exec</strong>\
-<code>RUN [“ejecutable”, “argumento1”, “argumento2”, “argumento3” …]</code></p>
-</li>
+<li><strong>shell</strong></li>
 </ul>
+<p><code>RUN &lt;comando&gt;</code> es el formato <em>shell</em>. El comando se ejecutará en un shell que por defecto es <code>/bin/sh -c</code> de Linux o <code>cmd /S /C</code> de Windows. </p>
+<ul>
+<li><strong>exec</strong></li>
+</ul>
+<p><code>RUN [“ejecutable”, “argumento1”, “argumento2”, “argumento3” …]</code></p>
 <p>El formato <em>exec</em> no invoca a un shell y el parser se realiza mediante un array json, por lo que requiere doble comillas (no comillas simples).</p>
 <p>Un ejemplo de <code>Dockerfile</code> hasta ahora, quedaría construido de la siguiente forma:</p>
 <pre><code># Ejemplo
@@ -1441,7 +1439,7 @@ hello                           v0.1                14ddb4369169        About a 
 <h3 id="2">2.</h3>
 <p>Utilizando la imagen <code>ruby:2.1-onbuild</code> crear una imagen para revisar la existencia de gemas ejecutando:</p>
 <p><code>docker run --rm checker-image ruby checker.rb &lt;gema&gt;</code></p>
-<p>Las imágenes ruby <em>onbuild</em> disponen del comando <code>bundle install</code> para ser ejecutado cuando cuando se ejecute <code>docker build</code> y son utilizadas a los efectos de testing (<em>no recomendadas en producción</em>)</p>
+<p>Las imágenes <em>onbuild</em> fueron creadas con la directiva <strong>ONBUILD</strong> en su <code>Dockerfile</code>.  Esta directiva permite indicar comandos para cuándo la imagen sea utilizada para un <code>build</code>, en el caso de ruby el comando es <code>bundle install</code>. Son utilizadas a los efectos de <strong>testing</strong> (<em>no se recomiendan en producción</em>).</p>
 <p>El siguiente código recibe el nombre de una gema y devuelve si está disponible:</p>
 <p>``` # checker.rb
 require 'rubygems' require 'curb'</p>

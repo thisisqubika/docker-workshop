@@ -1,6 +1,6 @@
 # Gestión de imágenes
 
-## Buscar
+## SEARCH
 
 El _Registry_ de imágenes público Docker Hub se puede buscar mediante [web](https://hub.docker.com) o con el comando `search`:
 
@@ -33,7 +33,7 @@ curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/ubuntu/tags/
 ```
 
 
-## Descargar
+## PULL
 
 La forma de descargar una imagen para incorporarla al repositorio local es con el comando `pull`:
 
@@ -43,7 +43,7 @@ docker pull ubuntu:bionic
 
 `run` además de ejecutar una imagen docker, también la descarga y la deja en el repositorio si no está descargada.
 
-## Gestionar
+## TAG
 
 El comando `tag` permite poner el nombre que queremos a una imagen en el formato `repositorio:etiqueta`
 
@@ -88,7 +88,7 @@ Buscar imágenes que no están asociadas a una nueva imagen (nueva capa):
 docker images --filter "dangling=true" 
 ```
 
-## Borrar
+## RMI
 
 Para borrar imágenes del repositorio local se utiliza el comando  `rmi`:
 

@@ -404,8 +404,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#buscar" title="Buscar" class="md-nav__link">
-    Buscar
+  <a href="#search" title="SEARCH" class="md-nav__link">
+    SEARCH
   </a>
   
     <nav class="md-nav">
@@ -424,22 +424,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#descargar" title="Descargar" class="md-nav__link">
-    Descargar
+  <a href="#pull" title="PULL" class="md-nav__link">
+    PULL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#gestionar" title="Gestionar" class="md-nav__link">
-    Gestionar
+  <a href="#tag" title="TAG" class="md-nav__link">
+    TAG
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#borrar" title="Borrar" class="md-nav__link">
-    Borrar
+  <a href="#rmi" title="RMI" class="md-nav__link">
+    RMI
   </a>
   
 </li>
@@ -536,8 +536,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
-      Subir (compartir) imágenes propias - PUSH
+    <a href="../06subir/" title="Registry" class="md-nav__link">
+      Registry
     </a>
   </li>
 
@@ -772,8 +772,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#buscar" title="Buscar" class="md-nav__link">
-    Buscar
+  <a href="#search" title="SEARCH" class="md-nav__link">
+    SEARCH
   </a>
   
     <nav class="md-nav">
@@ -792,22 +792,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#descargar" title="Descargar" class="md-nav__link">
-    Descargar
+  <a href="#pull" title="PULL" class="md-nav__link">
+    PULL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#gestionar" title="Gestionar" class="md-nav__link">
-    Gestionar
+  <a href="#tag" title="TAG" class="md-nav__link">
+    TAG
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#borrar" title="Borrar" class="md-nav__link">
-    Borrar
+  <a href="#rmi" title="RMI" class="md-nav__link">
+    RMI
   </a>
   
 </li>
@@ -857,7 +857,7 @@
                 
                 
                 <h1 id="gestion-de-imagenes">Gestión de imágenes</h1>
-<h2 id="buscar">Buscar</h2>
+<h2 id="search">SEARCH</h2>
 <p>El <em>Registry</em> de imágenes público Docker Hub se puede buscar mediante <a href="https://hub.docker.com">web</a> o con el comando <code>search</code>:</p>
 <pre><code>docker search ubuntu | head
 </code></pre>
@@ -881,13 +881,13 @@
 <pre><code>curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/ubuntu/tags/' | jq '.&quot;results&quot;[][&quot;name&quot;]' |sort
 </code></pre>
 
-<h2 id="descargar">Descargar</h2>
+<h2 id="pull">PULL</h2>
 <p>La forma de descargar una imagen para incorporarla al repositorio local es con el comando <code>pull</code>:</p>
 <pre><code>docker pull ubuntu:bionic
 </code></pre>
 
 <p><code>run</code> además de ejecutar una imagen docker, también la descarga y la deja en el repositorio si no está descargada.</p>
-<h2 id="gestionar">Gestionar</h2>
+<h2 id="tag">TAG</h2>
 <p>El comando <code>tag</code> permite poner el nombre que queremos a una imagen en el formato <code>repositorio:etiqueta</code></p>
 <pre><code>docker tag ubuntu:bionic pruebas:locales
 </code></pre>
@@ -919,7 +919,7 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
 <pre><code>docker images --filter &quot;dangling=true&quot; 
 </code></pre>
 
-<h2 id="borrar">Borrar</h2>
+<h2 id="rmi">RMI</h2>
 <p>Para borrar imágenes del repositorio local se utiliza el comando  <code>rmi</code>:</p>
 <pre><code>docker images rmi pruebas:locales
 </code></pre>

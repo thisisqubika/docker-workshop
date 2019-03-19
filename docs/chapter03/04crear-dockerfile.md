@@ -6,7 +6,7 @@ _Give a sysadmin an image and their app will be up-to-date for a day, give a sys
 
 ## Uso de Dockerfile
 
-Para la construcción de una imagen se utiliza el comando `docker  build ${CONTEXT}`. 
+Para la construcción de una imagen se utiliza el comando `docker build ${CONTEXT}`. 
 
 El `${CONTEXT}` son todos los archivos que necesita el Dockerfile para construir la imagen; puede ser una carpeta de nuestra propia máquina o una URL de un repositorio git. 
 
@@ -16,7 +16,7 @@ El archivo `Dockerfile` debe estar localizado en el raíz del `${CONTEXT}`
 
 También se puede utilizar un archivo `.dockerignore` para especificar los archivos y carpetas que deben ser excluidos del proceso de construcción de la imagen y que no serán enviados al docker daemon, lo que mejorará la performance del proceso de `build`.
 
-## Build
+## BUILD
 
 El `Dockerfile` siempre parte de una imagen creada, mediante la instrucción `FROM`. 
 
@@ -117,10 +117,12 @@ Permite indicar comandos que serán ejecutados en una nueva capa sobre la imagen
 
 RUN tiene dos formatos:
 
-- **shell**\
+- **shell**
+
 `RUN <comando>` es el formato _shell_. El comando se ejecutará en un shell que por defecto es `/bin/sh -c` de Linux o `cmd /S /C` de Windows. 
 
-- **exec**\
+- **exec**
+
 `RUN [“ejecutable”, “argumento1”, “argumento2”, “argumento3” …]`
 
 El formato _exec_ no invoca a un shell y el parser se realiza mediante un array json, por lo que requiere doble comillas (no comillas simples).
@@ -450,7 +452,7 @@ Utilizando la imagen `ruby:2.1-onbuild` crear una imagen para revisar la existen
 
 `docker run --rm checker-image ruby checker.rb <gema>`
 
-Las imágenes ruby _onbuild_ disponen del comando `bundle install` para ser ejecutado cuando cuando se ejecute `docker build` y son utilizadas a los efectos de testing (*no recomendadas en producción*)
+Las imágenes _onbuild_ fueron creadas con la directiva **ONBUILD** en su `Dockerfile`.  Esta directiva permite indicar comandos para cuándo la imagen sea utilizada para un `build`, en el caso de ruby el comando es `bundle install`. Son utilizadas a los efectos de **testing** (_no se recomiendan en producción_).
 
 El siguiente código recibe el nombre de una gema y devuelve si está disponible:
 
