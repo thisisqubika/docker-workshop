@@ -456,7 +456,8 @@ Las imágenes _onbuild_ fueron creadas con la directiva **ONBUILD** en su `Docke
 
 El siguiente código recibe el nombre de una gema y devuelve si está disponible:
 
-``` # checker.rb
+```
+
 require 'rubygems' require 'curb'
 
 gem_name = ARGV[0]
@@ -469,7 +470,6 @@ else
   $stdout.puts 'Name available.' 
 end
 ```
-
 
 ---
 

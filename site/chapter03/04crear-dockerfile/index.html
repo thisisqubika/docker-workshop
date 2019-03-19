@@ -1441,16 +1441,20 @@ hello                           v0.1                14ddb4369169        About a 
 <p><code>docker run --rm checker-image ruby checker.rb &lt;gema&gt;</code></p>
 <p>Las imágenes <em>onbuild</em> fueron creadas con la directiva <strong>ONBUILD</strong> en su <code>Dockerfile</code>.  Esta directiva permite indicar comandos para cuándo la imagen sea utilizada para un <code>build</code>, en el caso de ruby el comando es <code>bundle install</code>. Son utilizadas a los efectos de <strong>testing</strong> (<em>no se recomiendan en producción</em>).</p>
 <p>El siguiente código recibe el nombre de una gema y devuelve si está disponible:</p>
-<p>``` # checker.rb
-require 'rubygems' require 'curb'</p>
-<p>gem_name = ARGV[0]</p>
-<p>raise ArgumentError.new("gem name missing") if gem_name.nil?</p>
-<p>if Curl.get("https://rubygems.org/gems/#{gem_name}").status == '200 OK' 
+<pre><code>
+require 'rubygems' require 'curb'
+
+gem_name = ARGV[0]
+
+raise ArgumentError.new(&quot;gem name missing&quot;) if gem_name.nil?
+
+if Curl.get(&quot;https://rubygems.org/gems/#{gem_name}&quot;).status == '200 OK' 
   $stdout.puts 'Name not available.' 
 else 
   $stdout.puts 'Name available.' 
 end
-```</p>
+</code></pre>
+
 <hr />
 <h2 id="referencias">Referencias:</h2>
 <ul>
