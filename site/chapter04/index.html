@@ -36,7 +36,7 @@
     
     
       
-        <title>Index - Docker - Guía del Usuario</title>
+        <title>Esfímero - Docker - Guía del Usuario</title>
       
     
     
@@ -79,6 +79,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="../#esfimero" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -101,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                Index
+                Esfímero
               </span>
             
           
@@ -474,10 +478,48 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
     
-    <a href="./" title="Index" class="md-nav__link md-nav__link--active">
-      Index
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Esfímero
+      </label>
+    
+    <a href="./" title="Esfímero" class="md-nav__link md-nav__link--active">
+      Esfímero
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistir-datos" title="Persistir datos" class="md-nav__link">
+    Persistir datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystem-externos" title="Filesystem externos" class="md-nav__link">
+    Filesystem externos
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -662,18 +704,62 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistir-datos" title="Persistir datos" class="md-nav__link">
+    Persistir datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystem-externos" title="Filesystem externos" class="md-nav__link">
+    Filesystem externos
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                <h1 id="_1"></h1>
-<p>Los containers tienen un filesystem <em>esfímero</em>, es decir: el filesystem va a estar disponible mientras el container exista. Una vez que el container se borre, el filesystem también será eliminado.</p>
-<p>Pero evidentemente, la idea es poder iniciar, detener y borrar containers sin perder datos. Es decir, necesitamos persistir los datos fuera del contenedor. </p>
+                <h1 id="esfimero">Esfímero</h1>
+<p>Los contenedores tienen un <strong>filesystem esfímero</strong>, es decir que estará disponible mientras el contenedor exista. Una vez que el container se borre, el filesystem también será eliminado.</p>
+<h2 id="persistir-datos">Persistir datos</h2>
+<p>Para persistir datos se disponen de dos estrategias:</p>
+<ul>
+<li>Servicios externos (filesystem remotos, storage de objetos, bases de datos, etc.)</li>
+<li>Configuraciones del contenedor para filesystem externos.</li>
+</ul>
+<h2 id="filesystem-externos">Filesystem externos</h2>
 <p>Existen dos formas de hacerlo: </p>
 <ul>
-<li><strong>bind mount</strong> permite usar un carpeta (path) del host y presentarlo dentro del container en un punto de montado, por ejemplo <code>/app</code>.   </li>
+<li><strong>bind mount</strong> permite usar un carpeta (path) del host y presentarlo dentro del contenedor en un punto de montado, por ejemplo <code>/app</code>.   </li>
 </ul>
 <p>Es la forma más fácil de conectar el filesystem del host con el contenedor. </p>
 <p>El <em>bind mount</em> se especifica en el momento de lanzar el contenedor y requiere realizar los procesos de respaldo, migración, etc. con herramientas fuera de docker.</p>

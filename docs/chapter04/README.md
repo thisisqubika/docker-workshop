@@ -1,12 +1,19 @@
-# 
+# Esfímero
 
-Los containers tienen un filesystem _esfímero_, es decir: el filesystem va a estar disponible mientras el container exista. Una vez que el container se borre, el filesystem también será eliminado.
+Los contenedores tienen un **filesystem esfímero**, es decir que estará disponible mientras el contenedor exista. Una vez que el container se borre, el filesystem también será eliminado.
 
-Pero evidentemente, la idea es poder iniciar, detener y borrar containers sin perder datos. Es decir, necesitamos persistir los datos fuera del contenedor. 
+## Persistir datos
+
+Para persistir datos se disponen de dos estrategias:
+
+- Servicios externos (filesystem remotos, storage de objetos, bases de datos, etc.)
+- Configuraciones del contenedor para filesystem externos.
+
+## Filesystem externos
 
 Existen dos formas de hacerlo: 
 
-- **bind mount** permite usar un carpeta (path) del host y presentarlo dentro del container en un punto de montado, por ejemplo `/app`.   
+- **bind mount** permite usar un carpeta (path) del host y presentarlo dentro del contenedor en un punto de montado, por ejemplo `/app`.   
 
 Es la forma más fácil de conectar el filesystem del host con el contenedor. 
 
