@@ -59,3 +59,16 @@ Note la diferencia del directorio `/` montado en el contenedor y en el sistema _
 
 Encuentre la diferencia entre ejecutar el comando `man` en las imágenes de `alpine` y `busybox`.
 
+### 4. 
+
+Utilizando la imagen `ruby:latest` ejecutar código ruby:
+
+```
+docker run --rm ruby ruby -e 'print "Hello Ruby!\n"'
+```
+
+---
+
+## Referencias: 
+
+- Imágen [busybox](https://hub.docker.com/_/busybox)

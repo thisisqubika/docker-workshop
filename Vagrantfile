@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
      images: ["hello-world"]
   config.vm.provision "shell", inline: <<-SHELL
      apt-get update
-     DEBIAN_FRONTEND=noninteractive apt-get install -y docker-compose bridge-utils
+     DEBIAN_FRONTEND=noninteractive apt-get install -y docker-compose bridge-utils jq
      apt-get clean
   SHELL
 end

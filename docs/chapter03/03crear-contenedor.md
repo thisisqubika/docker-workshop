@@ -1,4 +1,4 @@
-# Crear a partir de un contenedor
+# Crear a partir de un contenedor - COMMIT
 
 Correr una contenedor basado en la imagen `debian` e ingresar al shell para hacer cambios:
 
@@ -41,6 +41,23 @@ docker container run configlet figlet hola
 ## Ejercicios
 
 ### 1.
+Utilizando la imagen `ruby:latest` crear una imagen llamada `ruby-hello` que contenga un ejecutable `hello.rb` con el siguiente código:
 
-### 2.
+*TIP*: probar código en línea de comando antes de crear la imagen.
 
+```
+print "Hello Ruby!\n"
+print "Goodbye Ruby!\n"`
+```
+
+De forma de poder invocarlo:
+
+```
+docker run --rm ruby-hello ./hello.rb
+```
+
+---
+
+## Referencias:
+
+- [docker commit](https://docs.docker.com/engine/reference/commandline/commit/)

@@ -2,7 +2,7 @@
 
 ## Buscar
 
-El repositorio de imágenes público Docker Hub se puede buscar mediante web o con el comando `search`:
+El _Registry_ de imágenes público Docker Hub se puede buscar mediante [web](https://hub.docker.com) o con el comando `search`:
 
 ```
 docker search ubuntu | head
@@ -10,15 +10,23 @@ docker search ubuntu | head
 
 desplegará la totalidad de las imágenes que posean ubuntu en su nombre o descripción.
 
-Para obtener las imágenes oficiales podemos filtrar solo las imágenes que comienzan con ubuntu:
+En Docker Hub existen dos tipos de imágenes:
+
+- *imágenes oficiales*, que son mantenidas por Docker y reciben aportes de la comunidad. Están pensadas para repositorio de distribuciones, mejores prácticas, seguridad. Se identifican por su nombre sin barra: `ubuntu` y por tener el atributo OFFICIAL
 
 ```
-docker search ubuntu | grep ^ubuntu
+docker search --filter is-official=true ubuntu
+```
+
+- *imágenes de usuarios*, son creadas, mantenidas y compartidas por usuarios. Se identifican por anteponer el nombre del usuario: `username/imagen`
+
+```
+docker search tutum
 ```
 
 ### tags
 
-Podemos contular por el `tag` de la imagen, directamente invocando al api del registry que nos devolverá un JSON que podemos filtrar con el comando `jq`:
+Podemos consultar por el `tag` de la imagen, directamente invocando al api del registry que nos devolverá un JSON que podemos filtrar con el comando `jq`:
 
 ```
 curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/ubuntu/tags/' | jq '."results"[]["name"]' |sort
@@ -33,7 +41,7 @@ La forma de descargar una imagen para incorporarla al repositorio local es con e
 docker pull ubuntu:bionic
 ```
 
-Debemos recordar que la opción `run` además de ejecutar una imagen docker, también la descarga y la deja en el repositorio.
+`run` además de ejecutar una imagen docker, también la descarga y la deja en el repositorio si no está descargada.
 
 ## Gestionar
 
@@ -67,7 +75,14 @@ Y el comando `docker images` posee la opción `--filter` que permite buscar imá
                         - since=(<image-name>[:tag]|<image-id>|<image@digest>)
                         - reference=(pattern of an image reference)
 ```
-Por ejemplo:
+
+Buscar imágenes que no están asociadas (_unused_) a un contenedor ejecutándose:
+
+```
+docker images --filter "running=false"
+```
+
+Buscar imágenes que no están asociadas a una nueva imagen (nueva capa):
 
 ```
 docker images --filter "dangling=true" 
@@ -78,13 +93,13 @@ docker images --filter "dangling=true"
 Para borrar imágenes del repositorio local se utiliza el comando  `rmi`:
 
 ```
-docker image rmi pruebas:locales
+docker images rmi pruebas:locales
 ```
 
-Para borrar todas las imágenes que no tienen asignado un nombre se utiliza:
+Para borrar todas las imágenes que no están en uso actualmente (_unused_ y _dangling_): 
 
 ```
-docker image prune
+docker images prune
 ``` 
 
 ---
@@ -99,4 +114,6 @@ Descargar la imagen de ubuntu correspondiente a `xenial`
 ## Referencias:
 
 - [Docker Hub](https://hub.docker.com)
+- [Official images on Docker Hub](https://docs.docker.com/docker-hub/official_images/)
 - [docker image filtering](https://github.com/moby/moby/blob/10c0af083544460a2ddc2218f37dc24a077f7d90/docs/reference/commandline/images.md#filtering)
+- Imagen [ubuntu](https://hub.docker.com/_/ubuntu)

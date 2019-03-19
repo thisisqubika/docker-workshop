@@ -1,4 +1,4 @@
-# Crear usando Dockerfile
+# Crear usando Dockerfile - BUILD
 
 _Give a sysadmin an image and their app will be up-to-date for a day, give a sysadmin a Dockerfile and their app will always be up-to-date_ 
 
@@ -10,7 +10,7 @@ Para la construcción de una imagen se utiliza el comando `docker  build ${CONTE
 
 El `${CONTEXT}` son todos los archivos que necesita el Dockerfile para construir la imagen; puede ser una carpeta de nuestra propia máquina o una URL de un repositorio git. 
 
-El proceso de `build` lo ejecuta Docker Daemon y no el utilitario docker. Todo el `${CONTEXT}` es enviado repulsivamente al docker daemon, por lo que no es recomendable utilizar un path con demasiados archivos, ya que todos serán enviados. 
+El proceso de `build` lo ejecuta Docker Daemon y no el utilitario docker. Todo el `${CONTEXT}` es enviado a docker daemon, por lo que no es recomendable utilizar un path con demasiados archivos, ya que todos serán enviados. 
 
 El archivo `Dockerfile` debe estar localizado en el raíz del `${CONTEXT}`
 
@@ -48,7 +48,7 @@ $ docker build -t pilasguru/nodejs .
 $ docker build -t pilasguru/nodejs:0.0.1 .
 ```
 
-Una vez construída podemos revisar que la imagen esté en nuestro repositorio
+Una vez construida podemos revisar que la imagen esté en nuestro repositorio
 
 ```
 $ docker images pilasguru/nodejs
@@ -68,7 +68,7 @@ El formato del archivo Dockerfile es:
 INSTRUCCION argument1 argumento2 argumento3 ...
 ```
 
-La INSTRUCCION no es case-sensitive pero por costumbre se suele usar en mayúscula. 
+La INSTRUCCION no es case-sensitive y por costumbre se suele usar en mayúscula. 
 
 El **orden de las instrucciones es importante** ya que debe seguir el orden del proceso de construcción de la imagen.
 
@@ -115,11 +115,15 @@ MAINTAINER <nombre>
 
 Permite indicar comandos que serán ejecutados en una nueva capa sobre la imagen (del FROM) en el proceso de construcción y ese resultado será guardado para pasarlo, opcionalmente, a un siguiente RUN que volverá a crear una nueva capa.
 
-RUN tiene dos formatos: **shell** o **exec**:
+RUN tiene dos formatos:
 
-`RUN <comando>` es el formato shell. El comando se ejecutará en un shell que por defecto es `/bin/sh -c` de Linux o `cmd /S /C` de Windows. 
+- **shell**\
+`RUN <comando>` es el formato _shell_. El comando se ejecutará en un shell que por defecto es `/bin/sh -c` de Linux o `cmd /S /C` de Windows. 
 
+- **exec**\
 `RUN [“ejecutable”, “argumento1”, “argumento2”, “argumento3” …]`
+
+El formato _exec_ no invoca a un shell y el parser se realiza mediante un array json, por lo que requiere doble comillas (no comillas simples).
 
 Un ejemplo de `Dockerfile` hasta ahora, quedaría construido de la siguiente forma:
 
@@ -128,7 +132,7 @@ Un ejemplo de `Dockerfile` hasta ahora, quedaría construido de la siguiente for
 # ----------
 FROM node:latest
 MAINTAINER pilasguru
-RUN /bin/sh -c 'echo "*** hello Dockerfile!! ***"'
+RUN /bin/bash -c 'echo "*** hello Dockerfile!! ***"'
 RUN ["npm", "--version"]
 ```
 
@@ -197,21 +201,23 @@ No significa que el puerto será accesible desde el host. Para construir la red,
 Permite configurar variables de entorno en el contenedor cuando esté corriendo.
 
 ```
-ENV mysql_password passw0rd
-ENV src_folder ./src/app
+ENV MYSQL_PASS passw0rd
+ENV SRCFOLDER ./src/app
 ```
 
 Se pueden consultar las declaraciones de ENV con el comando `inspect`:
 
 ```
-$ docker inspect linoxide/nodejs:0.0.3
-…
-"Env": [             "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-                "NPM_CONFIG_LOGLEVEL=info",
-                "NODE_VERSION=7.2.1",
-                "mysql_password=passw0rd",
-                "src_folder=./src/app"
-            ] …
+$ docker inspect pilasguru/nodejs:0.0.3 | \
+jq .[].ContainerConfig.Env
+
+[
+  "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+  "NODE_VERSION=11.11.0",
+  "YARN_VERSION=1.13.0"
+]
+
+$ docker inspect -f "{{ .Config.Env }}" pilasguru/nodejs:0.0.3
 ```
 
 ### ADD
@@ -228,7 +234,7 @@ ADD [ "dir con espacios/" "/app/" ]
 
 En los dos ejemplos de arriba se copian los archivos de los directorios indicados en la carpeta `/app/` dentro de la imagen.
 
-Si el `<dest>` no finaliza barra al final, se considera un archivo y en el se escribirá el contenido de `<src>`.
+Si el `<dest>` no finaliza barra al final, se considera un archivo y en él se escribirá el contenido de `<src>`.
 
 Si `<dest>` no existe, será creado.
 
@@ -261,15 +267,15 @@ Tenga en cuenta que **solamente un ENTRYPOINT** es permitido en el Dockerfile.
 
 ### CMD
 
-Al igual que ENTRYPOINT permite especificar comandos a ejecutar cuando se inicie el container y también, **solamente un CMD** es permitido en el Dockerfile.
+Al igual que ENTRYPOINT permite especificar comandos a ejecutar cuando se inicie el contenedor y también, **solamente un CMD** es permitido en el Dockerfile.
 
 La característica de CMD es que será omitido en caso de que el contenedor se inicie especificando otro comando.
 
 Si un Dockerfile especifica:
 
 ```
-ENTRYPOINT ["/bin/echo", "Hola pilasguru"]
-CMD  ["/bin/echo" "Hola Mundo!!"]
+ENTRYPOINT ["/bin/echo", "Hola ENTRYPOINT"]
+CMD  ["/bin/echo" "Hola CMD!!"]
 ```
 
 Y construímos la imagen:
@@ -282,15 +288,15 @@ Y ejecutamos:
 
 ```
 $ docker run -it --name minodejs pilasguru/nodejs:0.0.3
-Hola pilasguru
-Hola Mundo!!  
+Hola ENTRYPOINT
+Hola CMD!!  
 ```
 
 Ahora si creamos un segundo comando, pero indicando un comando:
 
 ```
 $ docker run -it --name minodejs pilasguru/nodejs:0.0.3 echo "Que onda!"
-Hola pilasguru
+Hola ENTRYPOINT
 Que onda!  
 ```
 
@@ -312,12 +318,11 @@ WORKDIR permite indicar el directorio en el cual los comandos de RUN, CMD, ENTRY
 
 WORKDIR puede ser visto como el `home` del contenedor
 
-
 ## Ejemplos de Dockerfile
 
-Please see the comments in each Dockerfile example.
+Las lineas comentadas son auto-explicativas.
 
-### Nodejs app Dockerfile example:
+### Nodejs app Dockerfile:
 
 ```
 FROM node:argon
@@ -333,7 +338,7 @@ EXPOSE 8080
 CMD [ "npm", "start" ]
 ```
 
-### Nginx Dockerfile example:
+### Nginx Dockerfile:
 
 ```
 FROM debian:jessie
@@ -361,7 +366,7 @@ CMD [ "nginx", "-g", "daemon off;" ]
 
 ---
 
-## Ejercicios:
+## Ejercicios
 
 ### 1.
 
@@ -377,7 +382,7 @@ Crear un archivo con el nombre `Dockerfile` con el siguiente contenido.
 
 ```
 FROM alpine
-RUN apk update && apk adk nodejs
+RUN apk update && apk add nodejs
 COPY . /app
 WORKDIR /app
 CMD ["node","index.js"]
@@ -436,7 +441,31 @@ hello                           v0.1                14ddb4369169        About a 
 ```
 
 ```
-docker container run hello:v0.1
+docker container run --rm hello:v0.1
+```
+
+### 2.
+
+Utilizando la imagen `ruby:2.1-onbuild` crear una imagen para revisar la existencia de gemas ejecutando:
+
+`docker run --rm checker-image ruby checker.rb <gema>`
+
+Las imágenes ruby _onbuild_ disponen del comando `bundle install` para ser ejecutado cuando cuando se ejecute `docker build` y son utilizadas a los efectos de testing (*no recomendadas en producción*)
+
+El siguiente código recibe el nombre de una gema y devuelve si está disponible:
+
+``` # checker.rb
+require 'rubygems' require 'curb'
+
+gem_name = ARGV[0]
+
+raise ArgumentError.new("gem name missing") if gem_name.nil?
+
+if Curl.get("https://rubygems.org/gems/#{gem_name}").status == '200 OK' 
+  $stdout.puts 'Name not available.' 
+else 
+  $stdout.puts 'Name available.' 
+end
 ```
 
 
@@ -444,7 +473,6 @@ docker container run hello:v0.1
 
 ## Referencias:
 
-* [https://docs.docker.com/engine/getstarted/step_four/](https://docs.docker.com/engine/getstarted/step_four/)
-* [https://docs.docker.com/engine/tutorials/dockerimages/](https://docs.docker.com/engine/tutorials/dockerimages/)
-* [https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+* [Dockerfile ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild)
 

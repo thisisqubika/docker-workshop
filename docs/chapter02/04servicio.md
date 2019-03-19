@@ -86,7 +86,7 @@ La imagen [tutum/debian](https://hub.docker.com/r/tutum/debian) levanta en un co
 $ docker run -d -p 2222:22 tutum/debian
 ```
 
-## EXEC 
+### EXEC 
 
 Consultar la configuración que quedó levantada para el acceso ssh:
 
@@ -163,4 +163,6 @@ Salir con `Ctrl-C` y verificar qué sucede con el contenedor utilizando el coman
 
 - [docker container](https://docs.docker.com/v17.09/engine/reference/commandline/container/)
 - [docker run](https://docs.docker.com/v17.09/engine/reference/commandline/run/)
+- Imágen [andygrunwald/simple-webserver](https://hub.docker.com/r/andygrunwald/simple-webserver)
+- Imágen [tutum/debian](https://hub.docker.com/r/tutum/debian)
 

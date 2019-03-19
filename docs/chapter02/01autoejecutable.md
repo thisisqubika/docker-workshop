@@ -67,6 +67,6 @@ Preste atención al tamaño que ocupa en el disco
 
 ## Referencias: 
 
-- [https://hub.docker.com/_/hello-world/](https://hub.docker.com/_/hello-world/)
+- Imágen [hello-world](https://hub.docker.com/_/hello-world/)
 
 

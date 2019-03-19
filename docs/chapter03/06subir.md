@@ -1,4 +1,4 @@
-# Subir (compartir) imágenes propias
+# Subir (compartir) imágenes propias - PUSH
 
 Para compartir imágenes en [Docker Hub](https://hub.docker.com) se debe poseer una cuenta y primeramente estar logrado:
 
@@ -30,5 +30,5 @@ latest: digest: sha256:8c03bb07a531c53ad7d0f6e7041b64d81f99c6e493cb39abba56d956b
 
 ## Referencias:
 
-- [https://docs.docker.com/engine/reference/commandline/push/](https://docs.docker.com/engine/reference/commandline/push/)
-- [https://docs.docker.com/docker-cloud/builds/push-images/](https://docs.docker.com/docker-cloud/builds/push-images/)
+- [docker push](https://docs.docker.com/engine/reference/commandline/push/)
+- [Pull and push images](https://docs.docker.com/datacenter/dtr/2.2/guides/user/manage-images/pull-and-push-images/)

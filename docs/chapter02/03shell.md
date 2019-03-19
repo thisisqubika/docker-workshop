@@ -41,7 +41,7 @@ ls
 exit
 ```
 
-Ejecutamos otro container y listamos su contenido
+Ejecutar un segundo contenedor y listamos su contenido
 
 ```
 docker container run alpine ls
@@ -68,3 +68,13 @@ docker container exec <container ID> ls
 ### 2.
 
 Del ejercicio anterior entienda bien al diferencia entre las opciones `exec` y `run` 
+
+### 3.
+Utilizar la imagen `ruby:latest` para ejecutar `irb`
+
+---
+
+## Referencias: 
+
+- Imágen [debian](https://hub.docker.com/_/debian)
+- Imágen [alpine](https://hub.docker.com/_/alpine)
