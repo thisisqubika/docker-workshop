@@ -425,18 +425,12 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#exec_1" title="EXEC" class="md-nav__link">
     EXEC
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#utilizar-servicio" title="Utilizar servicio" class="md-nav__link">
@@ -546,8 +540,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/" title="Imágenes docker" class="md-nav__link">
-      Imágenes docker
+    <a href="../../chapter03/" title="Imágenes docker y Registry" class="md-nav__link">
+      Imágenes docker y Registry
     </a>
   </li>
 
@@ -582,8 +576,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/03crear-contenedor/" title="Crear a partir de un contenedor" class="md-nav__link">
-      Crear a partir de un contenedor
+    <a href="../../chapter03/03crear-contenedor/" title="Crear a partir de un contenedor - COMMIT" class="md-nav__link">
+      Crear a partir de un contenedor - COMMIT
     </a>
   </li>
 
@@ -594,8 +588,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/04crear-dockerfile/" title="Crear usando Dockerfile" class="md-nav__link">
-      Crear usando Dockerfile
+    <a href="../../chapter03/04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-nav__link">
+      Crear usando Dockerfile - BUILD
     </a>
   </li>
 
@@ -618,8 +612,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
-      Subir (compartir) imágenes propias
+    <a href="../../chapter03/06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
+      Subir (compartir) imágenes propias - PUSH
     </a>
   </li>
 
@@ -923,18 +917,12 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#exec_1" title="EXEC" class="md-nav__link">
     EXEC
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#utilizar-servicio" title="Utilizar servicio" class="md-nav__link">
@@ -1079,7 +1067,7 @@ $
 <pre><code>$ docker run -d -p 2222:22 tutum/debian
 </code></pre>
 
-<h2 id="exec_1">EXEC</h2>
+<h3 id="exec_1">EXEC</h3>
 <p>Consultar la configuración que quedó levantada para el acceso ssh:</p>
 <pre><code>$ docker container logs 3a49c40eee76
 =&gt; Setting a random password to the root user
@@ -1133,6 +1121,8 @@ docker container rm -f &lt;CONTAINER-ID&gt;
 <ul>
 <li><a href="https://docs.docker.com/v17.09/engine/reference/commandline/container/">docker container</a></li>
 <li><a href="https://docs.docker.com/v17.09/engine/reference/commandline/run/">docker run</a></li>
+<li>Imágen <a href="https://hub.docker.com/r/andygrunwald/simple-webserver">andygrunwald/simple-webserver</a></li>
+<li>Imágen <a href="https://hub.docker.com/r/tutum/debian">tutum/debian</a></li>
 </ul>
                 
                   
@@ -1169,13 +1159,13 @@ docker container rm -f &lt;CONTAINER-ID&gt;
           </a>
         
         
-          <a href="../../chapter03/" title="Imágenes docker" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../chapter03/" title="Imágenes docker y Registry" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Imágenes docker
+                Imágenes docker y Registry
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

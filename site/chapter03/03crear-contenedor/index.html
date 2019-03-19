@@ -36,7 +36,7 @@
     
     
       
-        <title>Crear a partir de un contenedor - Docker - Guía del Usuario</title>
+        <title>Crear a partir de un contenedor - COMMIT - Docker - Guía del Usuario</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#crear-a-partir-de-un-contenedor" tabindex="1" class="md-skip">
+      <a href="../../#crear-a-partir-de-un-contenedor-commit" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -105,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                Crear a partir de un contenedor
+                Crear a partir de un contenedor - COMMIT
               </span>
             
           
@@ -365,8 +365,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Imágenes docker" class="md-nav__link">
-      Imágenes docker
+    <a href="../" title="Imágenes docker y Registry" class="md-nav__link">
+      Imágenes docker y Registry
     </a>
   </li>
 
@@ -410,11 +410,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Crear a partir de un contenedor
+        Crear a partir de un contenedor - COMMIT
       </label>
     
-    <a href="./" title="Crear a partir de un contenedor" class="md-nav__link md-nav__link--active">
-      Crear a partir de un contenedor
+    <a href="./" title="Crear a partir de un contenedor - COMMIT" class="md-nav__link md-nav__link--active">
+      Crear a partir de un contenedor - COMMIT
     </a>
     
       
@@ -442,15 +442,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#2" title="2." class="md-nav__link">
-    2.
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
   
 </li>
       
@@ -471,8 +471,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../04crear-dockerfile/" title="Crear usando Dockerfile" class="md-nav__link">
-      Crear usando Dockerfile
+    <a href="../04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-nav__link">
+      Crear usando Dockerfile - BUILD
     </a>
   </li>
 
@@ -495,8 +495,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
-      Subir (compartir) imágenes propias
+    <a href="../06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
+      Subir (compartir) imágenes propias - PUSH
     </a>
   </li>
 
@@ -745,15 +745,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#2" title="2." class="md-nav__link">
-    2.
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
   
 </li>
       
@@ -774,7 +774,7 @@
               
                 
                 
-                <h1 id="crear-a-partir-de-un-contenedor">Crear a partir de un contenedor</h1>
+                <h1 id="crear-a-partir-de-un-contenedor-commit">Crear a partir de un contenedor - COMMIT</h1>
 <p>Correr una contenedor basado en la imagen <code>debian</code> e ingresar al shell para hacer cambios:</p>
 <pre><code>docker container run -ti debian bash
 </code></pre>
@@ -804,7 +804,21 @@ docker image ls
 <hr />
 <h2 id="ejercicios">Ejercicios</h2>
 <h3 id="1">1.</h3>
-<h3 id="2">2.</h3>
+<p>Utilizando la imagen <code>ruby:latest</code> crear una imagen llamada <code>ruby-hello</code> que contenga un ejecutable <code>hello.rb</code> con el siguiente código:</p>
+<p><em>TIP</em>: probar código en línea de comando antes de crear la imagen.</p>
+<pre><code>print &quot;Hello Ruby!\n&quot;
+print &quot;Goodbye Ruby!\n&quot;`
+</code></pre>
+
+<p>De forma de poder invocarlo:</p>
+<pre><code>docker run --rm ruby-hello ./hello.rb
+</code></pre>
+
+<hr />
+<h2 id="referencias">Referencias:</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/commandline/commit/">docker commit</a></li>
+</ul>
                 
                   
                 
@@ -840,13 +854,13 @@ docker image ls
           </a>
         
         
-          <a href="../04crear-dockerfile/" title="Crear usando Dockerfile" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Crear usando Dockerfile
+                Crear usando Dockerfile - BUILD
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

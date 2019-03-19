@@ -365,8 +365,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Imágenes docker" class="md-nav__link">
-      Imágenes docker
+    <a href="../" title="Imágenes docker y Registry" class="md-nav__link">
+      Imágenes docker y Registry
     </a>
   </li>
 
@@ -500,8 +500,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../03crear-contenedor/" title="Crear a partir de un contenedor" class="md-nav__link">
-      Crear a partir de un contenedor
+    <a href="../03crear-contenedor/" title="Crear a partir de un contenedor - COMMIT" class="md-nav__link">
+      Crear a partir de un contenedor - COMMIT
     </a>
   </li>
 
@@ -512,8 +512,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../04crear-dockerfile/" title="Crear usando Dockerfile" class="md-nav__link">
-      Crear usando Dockerfile
+    <a href="../04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-nav__link">
+      Crear usando Dockerfile - BUILD
     </a>
   </li>
 
@@ -536,8 +536,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
-      Subir (compartir) imágenes propias
+    <a href="../06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
+      Subir (compartir) imágenes propias - PUSH
     </a>
   </li>
 
@@ -858,17 +858,26 @@
                 
                 <h1 id="gestion-de-imagenes">Gestión de imágenes</h1>
 <h2 id="buscar">Buscar</h2>
-<p>El repositorio de imágenes público Docker Hub se puede buscar mediante web o con el comando <code>search</code>:</p>
+<p>El <em>Registry</em> de imágenes público Docker Hub se puede buscar mediante <a href="https://hub.docker.com">web</a> o con el comando <code>search</code>:</p>
 <pre><code>docker search ubuntu | head
 </code></pre>
 
 <p>desplegará la totalidad de las imágenes que posean ubuntu en su nombre o descripción.</p>
-<p>Para obtener las imágenes oficiales podemos filtrar solo las imágenes que comienzan con ubuntu:</p>
-<pre><code>docker search ubuntu | grep ^ubuntu
+<p>En Docker Hub existen dos tipos de imágenes:</p>
+<ul>
+<li><em>imágenes oficiales</em>, que son mantenidas por Docker y reciben aportes de la comunidad. Están pensadas para repositorio de distribuciones, mejores prácticas, seguridad. Se identifican por su nombre sin barra: <code>ubuntu</code> y por tener el atributo OFFICIAL</li>
+</ul>
+<pre><code>docker search --filter is-official=true ubuntu
+</code></pre>
+
+<ul>
+<li><em>imágenes de usuarios</em>, son creadas, mantenidas y compartidas por usuarios. Se identifican por anteponer el nombre del usuario: <code>username/imagen</code></li>
+</ul>
+<pre><code>docker search tutum
 </code></pre>
 
 <h3 id="tags">tags</h3>
-<p>Podemos contular por el <code>tag</code> de la imagen, directamente invocando al api del registry que nos devolverá un JSON que podemos filtrar con el comando <code>jq</code>:</p>
+<p>Podemos consultar por el <code>tag</code> de la imagen, directamente invocando al api del registry que nos devolverá un JSON que podemos filtrar con el comando <code>jq</code>:</p>
 <pre><code>curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/ubuntu/tags/' | jq '.&quot;results&quot;[][&quot;name&quot;]' |sort
 </code></pre>
 
@@ -877,7 +886,7 @@
 <pre><code>docker pull ubuntu:bionic
 </code></pre>
 
-<p>Debemos recordar que la opción <code>run</code> además de ejecutar una imagen docker, también la descarga y la deja en el repositorio.</p>
+<p><code>run</code> además de ejecutar una imagen docker, también la descarga y la deja en el repositorio si no está descargada.</p>
 <h2 id="gestionar">Gestionar</h2>
 <p>El comando <code>tag</code> permite poner el nombre que queremos a una imagen en el formato <code>repositorio:etiqueta</code></p>
 <pre><code>docker tag ubuntu:bionic pruebas:locales
@@ -902,17 +911,21 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
                         - reference=(pattern of an image reference)
 </code></pre>
 
-<p>Por ejemplo:</p>
+<p>Buscar imágenes que no están asociadas (<em>unused</em>) a un contenedor ejecutándose:</p>
+<pre><code>docker images --filter &quot;running=false&quot;
+</code></pre>
+
+<p>Buscar imágenes que no están asociadas a una nueva imagen (nueva capa):</p>
 <pre><code>docker images --filter &quot;dangling=true&quot; 
 </code></pre>
 
 <h2 id="borrar">Borrar</h2>
 <p>Para borrar imágenes del repositorio local se utiliza el comando  <code>rmi</code>:</p>
-<pre><code>docker image rmi pruebas:locales
+<pre><code>docker images rmi pruebas:locales
 </code></pre>
 
-<p>Para borrar todas las imágenes que no tienen asignado un nombre se utiliza:</p>
-<pre><code>docker image prune
+<p>Para borrar todas las imágenes que no están en uso actualmente (<em>unused</em> y <em>dangling</em>): </p>
+<pre><code>docker images prune
 </code></pre>
 
 <hr />
@@ -923,7 +936,9 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
 <h2 id="referencias">Referencias:</h2>
 <ul>
 <li><a href="https://hub.docker.com">Docker Hub</a></li>
+<li><a href="https://docs.docker.com/docker-hub/official_images/">Official images on Docker Hub</a></li>
 <li><a href="https://github.com/moby/moby/blob/10c0af083544460a2ddc2218f37dc24a077f7d90/docs/reference/commandline/images.md#filtering">docker image filtering</a></li>
+<li>Imagen <a href="https://hub.docker.com/_/ubuntu">ubuntu</a></li>
 </ul>
                 
                   
@@ -945,7 +960,7 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../" title="Imágenes docker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../" title="Imágenes docker y Registry" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -954,7 +969,7 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Imágenes docker
+                Imágenes docker y Registry
               </span>
             </div>
           </a>

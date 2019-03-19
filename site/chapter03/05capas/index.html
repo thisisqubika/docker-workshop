@@ -365,8 +365,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Imágenes docker" class="md-nav__link">
-      Imágenes docker
+    <a href="../" title="Imágenes docker y Registry" class="md-nav__link">
+      Imágenes docker y Registry
     </a>
   </li>
 
@@ -401,8 +401,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../03crear-contenedor/" title="Crear a partir de un contenedor" class="md-nav__link">
-      Crear a partir de un contenedor
+    <a href="../03crear-contenedor/" title="Crear a partir de un contenedor - COMMIT" class="md-nav__link">
+      Crear a partir de un contenedor - COMMIT
     </a>
   </li>
 
@@ -413,8 +413,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../04crear-dockerfile/" title="Crear usando Dockerfile" class="md-nav__link">
-      Crear usando Dockerfile
+    <a href="../04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-nav__link">
+      Crear usando Dockerfile - BUILD
     </a>
   </li>
 
@@ -433,9 +433,52 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Capas de las imágenes
+      </label>
+    
     <a href="./" title="Capas de las imágenes" class="md-nav__link md-nav__link--active">
       Capas de las imágenes
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#history" title="HISTORY" class="md-nav__link">
+    HISTORY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspect" title="INSPECT" class="md-nav__link">
+    INSPECT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -446,8 +489,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
-      Subir (compartir) imágenes propias
+    <a href="../06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
+      Subir (compartir) imágenes propias - PUSH
     </a>
   </li>
 
@@ -678,6 +721,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#history" title="HISTORY" class="md-nav__link">
+    HISTORY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspect" title="INSPECT" class="md-nav__link">
+    INSPECT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -690,25 +763,49 @@
                 
                 
                 <h1 id="capas-de-las-imagenes">Capas de las imágenes</h1>
+<p>Las imágenes están formadas en capas. </p>
+<p>Cada repositorio archiva las capas una única vez, aunque pueda ser utilizada por distintas imágenes.  De la misma forma, a la hora de transferir una imagen, solo se copiarán las capas no disponibles en el repositorio destino.</p>
+<h2 id="history">HISTORY</h2>
+<p>Permite consultar la historia de una determinada imagen.</p>
 <pre><code>docker image history alpine
+</code></pre>
 
-echo &quot;console.log(\&quot;version imagen v0.2\&quot;);&quot; &gt;&gt; index.js
+<p>Crear una imagen para consultar su <em>history</em> con este ejemplo auto-explicativo:</p>
+<p><strong>Dockerfile</strong></p>
+<pre><code>FROM alpine
+RUN apk update &amp;&amp; apk add nodejs
+COPY . /app
+WORKDIR /app
+CMD [&quot;node&quot;,&quot;index.js&quot;]
+</code></pre>
+
+<p>Comandos: </p>
+<pre><code>echo &quot;console.log(\&quot;version imagen v0.2\&quot;);&quot; &gt;&gt; index.js
 
 docker image build -t hello:v0.2 .
 
 docker image ls
 
-docker container run hello:v0.2
+docker container run --rm hello:v0.2
 
 docker image history hello:v0.2 
 </code></pre>
 
+<h2 id="inspect">INSPECT</h2>
+<p>Consulta todos los datos de una imagen. Bajo <em>RootFS.Layers</em> se listan los identificadores únicos (SHA256) de cada capa, que permite el archivo en los repositorios (<em>Registry</em>)</p>
 <pre><code>docker image inspect alpine
 
 docker image inspect --format &quot;{{ json .RootFS.Layers }}&quot; alpine
 
 docker image inspect --format &quot;{{ json .RootFS.Layers }}&quot; hello:v0.2
 </code></pre>
+
+<hr />
+<h2 id="referencias">Referencias:</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/commandline/image_history/">docker image history</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/image_inspect/">docker image inspect</a></li>
+</ul>
                 
                   
                 
@@ -729,7 +826,7 @@ docker image inspect --format &quot;{{ json .RootFS.Layers }}&quot; hello:v0.2
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../04crear-dockerfile/" title="Crear usando Dockerfile" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -738,19 +835,19 @@ docker image inspect --format &quot;{{ json .RootFS.Layers }}&quot; hello:v0.2
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Crear usando Dockerfile
+                Crear usando Dockerfile - BUILD
               </span>
             </div>
           </a>
         
         
-          <a href="../06subir/" title="Subir (compartir) imágenes propias" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Subir (compartir) imágenes propias
+                Subir (compartir) imágenes propias - PUSH
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

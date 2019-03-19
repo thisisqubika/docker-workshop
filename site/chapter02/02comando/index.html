@@ -360,8 +360,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4" title="4." class="md-nav__link">
+    4.
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
   
 </li>
       
@@ -430,8 +444,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/" title="Imágenes docker" class="md-nav__link">
-      Imágenes docker
+    <a href="../../chapter03/" title="Imágenes docker y Registry" class="md-nav__link">
+      Imágenes docker y Registry
     </a>
   </li>
 
@@ -466,8 +480,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/03crear-contenedor/" title="Crear a partir de un contenedor" class="md-nav__link">
-      Crear a partir de un contenedor
+    <a href="../../chapter03/03crear-contenedor/" title="Crear a partir de un contenedor - COMMIT" class="md-nav__link">
+      Crear a partir de un contenedor - COMMIT
     </a>
   </li>
 
@@ -478,8 +492,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/04crear-dockerfile/" title="Crear usando Dockerfile" class="md-nav__link">
-      Crear usando Dockerfile
+    <a href="../../chapter03/04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-nav__link">
+      Crear usando Dockerfile - BUILD
     </a>
   </li>
 
@@ -502,8 +516,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter03/06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
-      Subir (compartir) imágenes propias
+    <a href="../../chapter03/06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
+      Subir (compartir) imágenes propias - PUSH
     </a>
   </li>
 
@@ -766,8 +780,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4" title="4." class="md-nav__link">
+    4.
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
   
 </li>
       
@@ -831,6 +859,16 @@ d223748120dc        busybox             &quot;echo 'hola mundo!'&quot;     17 se
 <p>Note la diferencia del directorio <code>/</code> montado en el contenedor y en el sistema <em>externo</em>.</p>
 <h3 id="3">3.</h3>
 <p>Encuentre la diferencia entre ejecutar el comando <code>man</code> en las imágenes de <code>alpine</code> y <code>busybox</code>.</p>
+<h3 id="4">4.</h3>
+<p>Utilizando la imagen <code>ruby:latest</code> ejecutar código ruby:</p>
+<pre><code>docker run --rm ruby ruby -e 'print &quot;Hello Ruby!\n&quot;'
+</code></pre>
+
+<hr />
+<h2 id="referencias">Referencias:</h2>
+<ul>
+<li>Imágen <a href="https://hub.docker.com/_/busybox">busybox</a></li>
+</ul>
                 
                   
                 

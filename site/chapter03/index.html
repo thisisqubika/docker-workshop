@@ -36,7 +36,7 @@
     
     
       
-        <title>Imágenes docker - Docker - Guía del Usuario</title>
+        <title>Imágenes docker y Registry - Docker - Guía del Usuario</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#imagenes-docker" tabindex="1" class="md-skip">
+      <a href="../#imagenes-docker-y-registry" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -105,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                Imágenes docker
+                Imágenes docker y Registry
               </span>
             
           
@@ -374,11 +374,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Imágenes docker
+        Imágenes docker y Registry
       </label>
     
-    <a href="./" title="Imágenes docker" class="md-nav__link md-nav__link--active">
-      Imágenes docker
+    <a href="./" title="Imágenes docker y Registry" class="md-nav__link md-nav__link--active">
+      Imágenes docker y Registry
     </a>
     
       
@@ -439,8 +439,8 @@
 
 
   <li class="md-nav__item">
-    <a href="03crear-contenedor/" title="Crear a partir de un contenedor" class="md-nav__link">
-      Crear a partir de un contenedor
+    <a href="03crear-contenedor/" title="Crear a partir de un contenedor - COMMIT" class="md-nav__link">
+      Crear a partir de un contenedor - COMMIT
     </a>
   </li>
 
@@ -451,8 +451,8 @@
 
 
   <li class="md-nav__item">
-    <a href="04crear-dockerfile/" title="Crear usando Dockerfile" class="md-nav__link">
-      Crear usando Dockerfile
+    <a href="04crear-dockerfile/" title="Crear usando Dockerfile - BUILD" class="md-nav__link">
+      Crear usando Dockerfile - BUILD
     </a>
   </li>
 
@@ -475,8 +475,8 @@
 
 
   <li class="md-nav__item">
-    <a href="06subir/" title="Subir (compartir) imágenes propias" class="md-nav__link">
-      Subir (compartir) imágenes propias
+    <a href="06subir/" title="Subir (compartir) imágenes propias - PUSH" class="md-nav__link">
+      Subir (compartir) imágenes propias - PUSH
     </a>
   </li>
 
@@ -734,10 +734,12 @@
               
                 
                 
-                <h1 id="imagenes-docker">Imágenes docker</h1>
-<p>El sistema de imágenes de docker permite guardar contenedores docker prontos para utilizar (llamados <em>imágenes</em>) en un banco local o remoto.</p>
-<p>Cuando el banco de imágenes es remoto se denomina <em>repositorio</em> y tiene como objetivo compartir imágenes entre distintos sistemas, grupos de usuarios o, inclusive, distribución de software pronto para poner a correr. </p>
-<p>El banco de imágenes <em>local</em> permite guardar las imágenes que se descargan de los repositorios y también las que son creadas localmente en el host donde se ejecuta docker.</p>
+                <h1 id="imagenes-docker-y-registry">Imágenes docker y Registry</h1>
+<p>El sistema de imágenes de docker permite guardar contenedores docker prontos para utilizar (llamados <em>imágenes</em>) en un banco local o remoto. Una imagen es un paquete ejecutable que incluye todo lo necesario para correr la aplicación (código, librerías, entorno y configuración).</p>
+<p>El servicio de banco de imágenes denomina <em>Registry</em> y tiene como objetivo compartir imágenes entre distintos sistemas, grupos de usuarios o, inclusive, distribución de software pronto para poner a correr. </p>
+<p>El Registry puede ser público (anónimo) o privado (con validación).</p>
+<p>El banco de imágenes <em>local</em> permite guardar las imágenes que se descargan de los <em>Registry</em> y también las que son creadas localmente en el host donde se ejecuta docker.</p>
+<p>Utilizando en el nombre de la imagen la URL del Registry es posible subir imágenes de diferentes repositorios.</p>
 <hr />
 <h2 id="referencias">Referencias:</h2>
 <ul>
