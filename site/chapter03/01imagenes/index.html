@@ -435,6 +435,19 @@
     TAG
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inspect" title="INSPECT" class="md-nav__link">
+    INSPECT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -803,6 +816,19 @@
     TAG
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inspect" title="INSPECT" class="md-nav__link">
+    INSPECT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -919,6 +945,22 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
 <pre><code>docker images --filter &quot;dangling=true&quot; 
 </code></pre>
 
+<h3 id="inspect">INSPECT</h3>
+<p>Permite obtener información detallada de una imagen que se encuentra descargada.</p>
+<p>Conocer el CMD que corre al arrancar:</p>
+<pre><code>$ docker image inspect hello-world
+           &quot;Cmd&quot;: [
+                &quot;/hello&quot;
+            ],
+</code></pre>
+
+<p>Ver los puertos que están EXPOSE:</p>
+<pre><code>$ docker image inspect andygrunwald/simple-webserver:latest
+            &quot;ExposedPorts&quot;: {
+                &quot;8082/tcp&quot;: {}
+            },
+</code></pre>
+
 <h2 id="rmi">RMI</h2>
 <p>Para borrar imágenes del repositorio local se utiliza el comando  <code>rmi</code>:</p>
 <pre><code>docker images rmi pruebas:locales
@@ -937,6 +979,7 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
 <ul>
 <li><a href="https://hub.docker.com">Docker Hub</a></li>
 <li><a href="https://docs.docker.com/docker-hub/official_images/">Official images on Docker Hub</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/image_inspect/">docker image inspect</a></li>
 <li><a href="https://github.com/moby/moby/blob/10c0af083544460a2ddc2218f37dc24a077f7d90/docs/reference/commandline/images.md#filtering">docker image filtering</a></li>
 <li>Imagen <a href="https://hub.docker.com/_/ubuntu">ubuntu</a></li>
 </ul>

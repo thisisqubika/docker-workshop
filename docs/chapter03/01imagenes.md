@@ -88,6 +88,28 @@ Buscar imágenes que no están asociadas a una nueva imagen (nueva capa):
 docker images --filter "dangling=true" 
 ```
 
+### INSPECT
+
+Permite obtener información detallada de una imagen que se encuentra descargada.
+
+Conocer el CMD que corre al arrancar:
+
+```
+$ docker image inspect hello-world
+           "Cmd": [
+                "/hello"
+            ],
+```
+
+Ver los puertos que están EXPOSE:
+
+```
+$ docker image inspect andygrunwald/simple-webserver:latest
+            "ExposedPorts": {
+                "8082/tcp": {}
+            },
+```
+
 ## RMI
 
 Para borrar imágenes del repositorio local se utiliza el comando  `rmi`:
@@ -115,5 +137,6 @@ Descargar la imagen de ubuntu correspondiente a `xenial`
 
 - [Docker Hub](https://hub.docker.com)
 - [Official images on Docker Hub](https://docs.docker.com/docker-hub/official_images/)
+- [docker image inspect](https://docs.docker.com/engine/reference/commandline/image_inspect/)
 - [docker image filtering](https://github.com/moby/moby/blob/10c0af083544460a2ddc2218f37dc24a077f7d90/docs/reference/commandline/images.md#filtering)
 - Imagen [ubuntu](https://hub.docker.com/_/ubuntu)
