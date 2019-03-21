@@ -458,7 +458,7 @@ El siguiente código recibe el nombre de una gema y devuelve si está disponible
 
 ```
 # checker.rb
-require 'rubygems' require 'curb'
+require 'curb'
 
 gem_name = ARGV[0]
 
