@@ -24,7 +24,7 @@ docker search --filter is-official=true ubuntu
 docker search tutum
 ```
 
-### tags
+### Listar tags
 
 Podemos consultar por el `tag` de la imagen, directamente invocando al api del registry que nos devolverá un JSON que podemos filtrar con el comando `jq`:
 
@@ -88,7 +88,7 @@ Buscar imágenes que no están asociadas a una nueva imagen (nueva capa):
 docker images --filter "dangling=true" 
 ```
 
-### INSPECT
+## INSPECT
 
 Permite obtener información detallada de una imagen que se encuentra descargada.
 

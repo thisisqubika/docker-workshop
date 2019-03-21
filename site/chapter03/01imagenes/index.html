@@ -412,8 +412,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tags" title="tags" class="md-nav__link">
-    tags
+  <a href="#listar-tags" title="Listar tags" class="md-nav__link">
+    Listar tags
   </a>
   
 </li>
@@ -435,18 +435,12 @@
     TAG
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#inspect" title="INSPECT" class="md-nav__link">
     INSPECT
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -793,8 +787,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tags" title="tags" class="md-nav__link">
-    tags
+  <a href="#listar-tags" title="Listar tags" class="md-nav__link">
+    Listar tags
   </a>
   
 </li>
@@ -816,18 +810,12 @@
     TAG
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#inspect" title="INSPECT" class="md-nav__link">
     INSPECT
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -902,7 +890,7 @@
 <pre><code>docker search tutum
 </code></pre>
 
-<h3 id="tags">tags</h3>
+<h3 id="listar-tags">Listar tags</h3>
 <p>Podemos consultar por el <code>tag</code> de la imagen, directamente invocando al api del registry que nos devolverá un JSON que podemos filtrar con el comando <code>jq</code>:</p>
 <pre><code>curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/ubuntu/tags/' | jq '.&quot;results&quot;[][&quot;name&quot;]' |sort
 </code></pre>
@@ -945,7 +933,7 @@ ubuntu              bionic              452a96d81c30        5 weeks ago         
 <pre><code>docker images --filter &quot;dangling=true&quot; 
 </code></pre>
 
-<h3 id="inspect">INSPECT</h3>
+<h2 id="inspect">INSPECT</h2>
 <p>Permite obtener información detallada de una imagen que se encuentra descargada.</p>
 <p>Conocer el CMD que corre al arrancar:</p>
 <pre><code>$ docker image inspect hello-world
