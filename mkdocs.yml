@@ -31,6 +31,7 @@ nav:
       - chapter04/README.md
       - chapter04/01bind.md
       - chapter04/02volume.md
+      - chapter04/03tmpfsmount.md
     - 5. Redes:
       - chapter05/README.md 
       - chapter05/01redcerrado.md
