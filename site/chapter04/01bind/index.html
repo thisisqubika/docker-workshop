@@ -36,7 +36,7 @@
     
     
       
-        <title>Espacio de host - Docker - Guía del Usuario</title>
+        <title>Filesystem del host (bind mount) - Docker - Guía del Usuario</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#espacio-de-host" tabindex="1" class="md-skip">
+      <a href="../../#filesystem-del-host-bind-mount" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -105,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                Espacio de host
+                Filesystem del host (bind mount)
               </span>
             
           
@@ -473,8 +473,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Esfímero" class="md-nav__link">
-      Esfímero
+    <a href="../" title="Filesystem esfímero" class="md-nav__link">
+      Filesystem esfímero
     </a>
   </li>
 
@@ -494,11 +494,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Espacio de host
+        Filesystem del host (bind mount)
       </label>
     
-    <a href="./" title="Espacio de host" class="md-nav__link md-nav__link--active">
-      Espacio de host
+    <a href="./" title="Filesystem del host (bind mount)" class="md-nav__link md-nav__link--active">
+      Filesystem del host (bind mount)
     </a>
     
       
@@ -510,6 +510,33 @@
   
     <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-volume-v" title="--volume | -v" class="md-nav__link">
+    --volume | -v
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" title="Ejercicios:" class="md-nav__link">
+    Ejercicios:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1." class="md-nav__link">
+    1.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#referencias" title="Referencias:" class="md-nav__link">
@@ -535,8 +562,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../02volume/" title="Volume" class="md-nav__link">
-      Volume
+    <a href="../02volume/" title="Filesystem del host (volume)" class="md-nav__link">
+      Filesystem del host (volume)
     </a>
   </li>
 
@@ -711,6 +738,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#-volume-v" title="--volume | -v" class="md-nav__link">
+    --volume | -v
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" title="Ejercicios:" class="md-nav__link">
+    Ejercicios:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1." class="md-nav__link">
+    1.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#referencias" title="Referencias:" class="md-nav__link">
     Referencias:
   </a>
@@ -734,8 +788,13 @@
               
                 
                 
-                <h1 id="espacio-de-host">Espacio de host</h1>
-<p>Montar una carpeta desde del host directamente dentro de un contenedor se hace utilizando la opción </p>
+                <h1 id="filesystem-del-host-bind-mount">Filesystem del host (bind mount)</h1>
+<p>Bind mount permite usar una carpeta (o archivo) del host que es presentada en el espacio de filesystem del contenedor mediante la técnica de montado bind (<code>mount -o bind</code>) de Linux.</p>
+<p><em>Bind mount</em> es la forma dar permanencia a los datos de disco del contenedor.</p>
+<p>El <em>bind mount</em> se especifica en el momento de lanzar el contenedor y permite realizar los procesos de respaldo, migración, etc. con herramientas fuera de docker.</p>
+<p>Existen dos tipos de montado bind disponible para contenedores:</p>
+<h2 id="-volume-v">--volume | -v</h2>
+<p>Permite apuntar <em>una ruta</em> de carpeta o de archivo del host y presentarlo dentro del contenedor en un punto de montado.  </p>
 <p><code>-v path-host:path-container</code></p>
 <p>Y se configura al lanzar el contenedor:</p>
 <pre><code>docker container run --name web-nginx -v /opt/website:/usr/share/nginx/html:ro -d nginx
@@ -743,10 +802,21 @@
 
 <p>Esto hará que la carpeta del host <code>/opt/website</code> quede presentada como la carpeta <code>/usr/share/nginx/html</code> en el contenedor.</p>
 <p>El atributo <code>:ro</code> hará que para el contenedor sea un espacio de solo lectura.</p>
+<p>Otro contenedor puede ser lanzado con la misma opción de montado (<code>-v</code>) para reutilizar los datos generados por el primer contenedor.</p>
+<hr />
+<h2 id="ejercicios">Ejercicios:</h2>
+<h3 id="1">1.</h3>
+<p>De alguna aplicación que esté desarrollando, ejecutar la imagen docker del servicio que necesita tener levantado, montando el directorio de su aplicación desde el host.</p>
+<p>Ejemplos:</p>
+<pre><code>docker run -it --rm -v $PWD/src:/usr/local/app --workdir /usr/local/app ruby:latest bash
+
+# bundle install 
+</code></pre>
+
 <hr />
 <h2 id="referencias">Referencias:</h2>
 <ul>
-<li>bind mount</li>
+<li><a href="https://docs.docker.com/storage/bind-mounts/">Use bind mounts</a></li>
 </ul>
                 
                   
@@ -768,7 +838,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../" title="Esfímero" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../" title="Filesystem esfímero" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -777,19 +847,19 @@
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Esfímero
+                Filesystem esfímero
               </span>
             </div>
           </a>
         
         
-          <a href="../02volume/" title="Volume" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../02volume/" title="Filesystem del host (volume)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Volume
+                Filesystem del host (volume)
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

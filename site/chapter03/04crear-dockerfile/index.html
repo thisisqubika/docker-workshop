@@ -697,8 +697,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter04/" title="Esfímero" class="md-nav__link">
-      Esfímero
+    <a href="../../chapter04/" title="Filesystem esfímero" class="md-nav__link">
+      Filesystem esfímero
     </a>
   </li>
 
@@ -709,8 +709,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter04/01bind/" title="Espacio de host" class="md-nav__link">
-      Espacio de host
+    <a href="../../chapter04/01bind/" title="Filesystem del host (bind mount)" class="md-nav__link">
+      Filesystem del host (bind mount)
     </a>
   </li>
 
@@ -721,8 +721,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../chapter04/02volume/" title="Volume" class="md-nav__link">
-      Volume
+    <a href="../../chapter04/02volume/" title="Filesystem del host (volume)" class="md-nav__link">
+      Filesystem del host (volume)
     </a>
   </li>
 
@@ -1449,9 +1449,9 @@ gem_name = ARGV[0]
 raise ArgumentError.new(&quot;gem name missing&quot;) if gem_name.nil?
 
 if Curl.get(&quot;https://rubygems.org/gems/#{gem_name}&quot;).status == '200 OK' 
-  $stdout.puts 'Name not available.' 
-else 
   $stdout.puts 'Name available.' 
+else 
+  $stdout.puts 'Name not available.' 
 end
 </code></pre>
 

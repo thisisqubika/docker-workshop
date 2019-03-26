@@ -1,24 +1,27 @@
-# Esfímero
+# Filesystem esfímero
 
 Los contenedores tienen un **filesystem esfímero**, es decir que estará disponible mientras el contenedor exista. Una vez que el container se borre, el filesystem también será eliminado.
 
-## Persistir datos
+## Mantener datos 
 
-Para persistir datos se disponen de dos estrategias:
+Para mantener datos fuera del contenedor existen tres posibilidades:
 
-- Servicios externos (filesystem remotos, storage de objetos, bases de datos, etc.)
-- Configuraciones del contenedor para filesystem externos.
+1. Servicios externos:
+	- filesystem remotos
+	- storage de objetos
+	- bases de datos
+2. Filesystem del Host
+  - bind mount
+  - volumes (docker volume) 
+3. Memoria del Host (temporal)
+  - tmpfs mount
 
-## Filesystem externos
+## Imágenes y volúmenes
 
-Existen dos formas de hacerlo: 
+`Los volúmenes, los bind mount y los tmpfs mount no son parte de las imágenes que se puedan crear`
 
-- **bind mount** permite usar un carpeta (path) del host y presentarlo dentro del contenedor en un punto de montado, por ejemplo `/app`.   
+---
 
-Es la forma más fácil de conectar el filesystem del host con el contenedor. 
+## Referencias:
 
-El _bind mount_ se especifica en el momento de lanzar el contenedor y requiere realizar los procesos de respaldo, migración, etc. con herramientas fuera de docker.
-
-- **volume** es un dispositivo de disco externo el contenedor creado por docker y puede ser utilizado por otros contenedores simplemente indicando la ruta (nombre).
-
-
+- [Manage data in Docker](https://docs.docker.com/storage/)

@@ -10,7 +10,7 @@ Ejecutar estos comandos para instalar `figlet` y salir
 
 ```
 apt-get update
-apt-get install -y fidlet
+apt-get install -y figlet
 figlet 'hello docker'
 exit
 ```
@@ -26,7 +26,7 @@ docker image ls
 Le colocamos el nombre a la imagen generada con el comando `image tag` pues no lo hicimos junto con el `container commit`
 
 ```
-docker image tag <IMAGE-ID> confidget
+docker image tag <IMAGE-ID> configlet
 docker image ls
 ```
 

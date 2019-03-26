@@ -36,7 +36,7 @@
     
     
       
-        <title>Esfímero - Docker - Guía del Usuario</title>
+        <title>Filesystem esfímero - Docker - Guía del Usuario</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#esfimero" tabindex="1" class="md-skip">
+      <a href="../#filesystem-esfimero" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -105,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                Esfímero
+                Filesystem esfímero
               </span>
             
           
@@ -482,11 +482,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Esfímero
+        Filesystem esfímero
       </label>
     
-    <a href="./" title="Esfímero" class="md-nav__link md-nav__link--active">
-      Esfímero
+    <a href="./" title="Filesystem esfímero" class="md-nav__link md-nav__link--active">
+      Filesystem esfímero
     </a>
     
       
@@ -500,15 +500,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#persistir-datos" title="Persistir datos" class="md-nav__link">
-    Persistir datos
+  <a href="#mantener-datos" title="Mantener datos" class="md-nav__link">
+    Mantener datos
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#filesystem-externos" title="Filesystem externos" class="md-nav__link">
-    Filesystem externos
+  <a href="#imagenes-y-volumenes" title="Imágenes y volúmenes" class="md-nav__link">
+    Imágenes y volúmenes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
   </a>
   
 </li>
@@ -530,8 +537,8 @@
 
 
   <li class="md-nav__item">
-    <a href="01bind/" title="Espacio de host" class="md-nav__link">
-      Espacio de host
+    <a href="01bind/" title="Filesystem del host (bind mount)" class="md-nav__link">
+      Filesystem del host (bind mount)
     </a>
   </li>
 
@@ -542,8 +549,8 @@
 
 
   <li class="md-nav__item">
-    <a href="02volume/" title="Volume" class="md-nav__link">
-      Volume
+    <a href="02volume/" title="Filesystem del host (volume)" class="md-nav__link">
+      Filesystem del host (volume)
     </a>
   </li>
 
@@ -718,15 +725,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#persistir-datos" title="Persistir datos" class="md-nav__link">
-    Persistir datos
+  <a href="#mantener-datos" title="Mantener datos" class="md-nav__link">
+    Mantener datos
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#filesystem-externos" title="Filesystem externos" class="md-nav__link">
-    Filesystem externos
+  <a href="#imagenes-y-volumenes" title="Imágenes y volúmenes" class="md-nav__link">
+    Imágenes y volúmenes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
   </a>
   
 </li>
@@ -748,23 +762,29 @@
               
                 
                 
-                <h1 id="esfimero">Esfímero</h1>
+                <h1 id="filesystem-esfimero">Filesystem esfímero</h1>
 <p>Los contenedores tienen un <strong>filesystem esfímero</strong>, es decir que estará disponible mientras el contenedor exista. Una vez que el container se borre, el filesystem también será eliminado.</p>
-<h2 id="persistir-datos">Persistir datos</h2>
-<p>Para persistir datos se disponen de dos estrategias:</p>
-<ul>
-<li>Servicios externos (filesystem remotos, storage de objetos, bases de datos, etc.)</li>
-<li>Configuraciones del contenedor para filesystem externos.</li>
+<h2 id="mantener-datos">Mantener datos</h2>
+<p>Para mantener datos fuera del contenedor existen tres posibilidades:</p>
+<ol>
+<li>Servicios externos:<ul>
+<li>filesystem remotos</li>
+<li>storage de objetos</li>
+<li>bases de datos</li>
 </ul>
-<h2 id="filesystem-externos">Filesystem externos</h2>
-<p>Existen dos formas de hacerlo: </p>
+</li>
+<li>Filesystem del Host</li>
+<li>bind mount</li>
+<li>volumes (docker volume) </li>
+<li>Memoria del Host (temporal)</li>
+<li>tmpfs mount</li>
+</ol>
+<h2 id="imagenes-y-volumenes">Imágenes y volúmenes</h2>
+<p><code>Los volúmenes, los bind mount y los tmpfs mount no son parte de las imágenes que se puedan crear</code></p>
+<hr />
+<h2 id="referencias">Referencias:</h2>
 <ul>
-<li><strong>bind mount</strong> permite usar un carpeta (path) del host y presentarlo dentro del contenedor en un punto de montado, por ejemplo <code>/app</code>.   </li>
-</ul>
-<p>Es la forma más fácil de conectar el filesystem del host con el contenedor. </p>
-<p>El <em>bind mount</em> se especifica en el momento de lanzar el contenedor y requiere realizar los procesos de respaldo, migración, etc. con herramientas fuera de docker.</p>
-<ul>
-<li><strong>volume</strong> es un dispositivo de disco externo el contenedor creado por docker y puede ser utilizado por otros contenedores simplemente indicando la ruta (nombre).</li>
+<li><a href="https://docs.docker.com/storage/">Manage data in Docker</a></li>
 </ul>
                 
                   
@@ -801,13 +821,13 @@
           </a>
         
         
-          <a href="01bind/" title="Espacio de host" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="01bind/" title="Filesystem del host (bind mount)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Espacio de host
+                Filesystem del host (bind mount)
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
