@@ -20,7 +20,10 @@ curl localhost:8080
 
 La opción `EXPOSE` de las imágenes permite conocer qué puertos tendrán un servicio escuchando cuando el contenedor esté corriendo.
 
+
 # Uso nombre
+
+## Redes creadas por el usuario
 
 Por defecto los contenedores en *redes creadas por el usuario* mapean en el DNS todos por nombre entre ellos.
 
@@ -34,10 +37,12 @@ PING testA (172.18.0.2): 56 data bytes
 64 bytes from 172.18.0.2: seq=1 ttl=64 time=0.094 ms
 ```
 
+## Bridge por defecto docker0
+
 En el bridge por defecto (docker0) es necesario usar la opción  `--link` para que se vinculen los nombres entre los contenedores y genera entradas en el archivo `/etc/hosts` para resolver los container por nombre entre ellos. 
 
 > --link se utiliza solamente para el default bridge (docker0)
-
+>
 > --link es una opción caduca y será retirada en versión futura
 
 

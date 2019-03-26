@@ -774,6 +774,7 @@ curl localhost:8080
 
 <p>La opción <code>EXPOSE</code> de las imágenes permite conocer qué puertos tendrán un servicio escuchando cuando el contenedor esté corriendo.</p>
 <h1 id="uso-nombre">Uso nombre</h1>
+<h2 id="redes-creadas-por-el-usuario">Redes creadas por el usuario</h2>
 <p>Por defecto los contenedores en <em>redes creadas por el usuario</em> mapean en el DNS todos por nombre entre ellos.</p>
 <pre><code>docker run --rm -it --network mired --name testA alpine sh
 
@@ -784,6 +785,7 @@ PING testA (172.18.0.2): 56 data bytes
 64 bytes from 172.18.0.2: seq=1 ttl=64 time=0.094 ms
 </code></pre>
 
+<h2 id="bridge-por-defecto-docker0">Bridge por defecto docker0</h2>
 <p>En el bridge por defecto (docker0) es necesario usar la opción  <code>--link</code> para que se vinculen los nombres entre los contenedores y genera entradas en el archivo <code>/etc/hosts</code> para resolver los container por nombre entre ellos. </p>
 <blockquote>
 <p>--link se utiliza solamente para el default bridge (docker0)</p>
