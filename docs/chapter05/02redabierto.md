@@ -1,11 +1,15 @@
 # Contenedores abiertos
 
-Los contenedores abiertos se deben evitar en lo posible. Los contenedores abiertos se conectan directamente al sistema de red del host. Para los contenedores abiertos se deben tomar precauciones de aislamiento adicional, ya que se tiene un acceso total a las redes y las interfaces el host.
+Los contenedores abiertos *se deben evitar en lo posible*. 
 
-Para crear un contenedor en una red abierta utilizamos el argumento `--net host` cuando lo creamos:
+Los contenedores abiertos se conectan directamente al sistema de red del host. Para los contenedores abiertos se deben tomar precauciones de aislamiento adicional, ya que se tiene un acceso total a las redes y las interfaces el host.
+
+## --network host
+
+Para crear un contenedor en una red abierta utilizamos el argumento `--network host` cuando lo creamos:
 
 ```
-$ docker run --net host -it alpine:latest /bin/sh
+$ docker run --network host -it alpine:latest /bin/sh
 
 / # ip a s
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
@@ -29,3 +33,9 @@ $ docker run --net host -it alpine:latest /bin/sh
 ```
 
 Este container solamente ejecuta un shell, pero muestra como se tiene acceso a todas las interfaces del host en forma transparente.
+
+---
+
+## Referencias:
+
+- [Use host networking](https://docs.docker.com/network/host/)

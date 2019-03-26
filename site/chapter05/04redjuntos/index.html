@@ -36,7 +36,7 @@
     
     
       
-        <title>Contenedores juntos - Docker - Guía del Usuario</title>
+        <title>Contenedores juntos (linked) - Docker - Guía del Usuario</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#contenedores-juntos" tabindex="1" class="md-skip">
+      <a href="../../#contenedores-juntos-linked" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -105,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                Contenedores juntos
+                Contenedores juntos (linked)
               </span>
             
           
@@ -601,10 +601,51 @@
       
     
     
-    <a href="./" title="Contenedores juntos" class="md-nav__link md-nav__link--active">
-      Contenedores juntos
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Contenedores juntos (linked)
+      </label>
+    
+    <a href="./" title="Contenedores juntos (linked)" class="md-nav__link md-nav__link--active">
+      Contenedores juntos (linked)
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05accesoexterno/" title="Acceso externo" class="md-nav__link">
+      Acceso externo
+    </a>
   </li>
 
         
@@ -690,6 +731,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias:" class="md-nav__link">
+    Referencias:
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -701,16 +758,22 @@
               
                 
                 
-                <h1 id="contenedores-juntos">Contenedores juntos</h1>
-<p>En una red de contenedores juntos, multiple contenedores comparten la misma interfaz de red y loopback; como resultado podemos crear redes cerradas y levantar otros container en la misma red que se pueden comunicar unos con otros. De esta forma se pueden crear containers aislados de internet pero vinculados por red entre ellos redes.</p>
-<p>Para crear un contenedor unido a otro utilizamos el argumento <code>--net container: nombre</code>, como este ejemplo:</p>
+                <h1 id="contenedores-juntos-linked">Contenedores juntos (linked)</h1>
+<p>En una red de contenedores juntos, multiple contenedores comparten la misma interfaz de red <em>loopback</em>, de esta forma, cualquiera que levante un servicio en <code>127.0.0.1</code> será visto por el otro en su respectivo <code>localhost</code>. De esta forma se pueden crear containers aislados de internet pero vinculados por red entre ellos redes.</p>
+<p>Para crear un contenedor unido a otro utilizamos el argumento <code>--network container:nombre</code>, como este ejemplo:</p>
 <p>Creamos un primer contenedor en una cerrado:</p>
-<pre><code>$ docker run --name contenedor_cerrado --net none -it alpine /bin/sh
+<pre><code>$ docker run --rm --name 1cerrado --network none -it alpine /bin/sh
 </code></pre>
 
 <p>Creamos un segundo contenedor pegándolo al creado en el paso anterior:</p>
-<pre><code>$ docker run --net container:contenedor_cerrado -it alpine /bin/sh
+<pre><code>$ docker run --rm --network container:1cerrado -it alpine /bin/sh
 </code></pre>
+
+<hr />
+<h2 id="referencias">Referencias:</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/tutorials/networkingcontainers/">Network containers</a></li>
+</ul>
                 
                   
                 
@@ -746,13 +809,13 @@
           </a>
         
         
-          <a href="../../chapter06/" title="Multiple contenedores" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../05accesoexterno/" title="Acceso externo" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Multiple contenedores
+                Acceso externo
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

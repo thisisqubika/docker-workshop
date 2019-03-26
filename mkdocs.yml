@@ -38,6 +38,7 @@ nav:
       - chapter05/02redabierto.md
       - chapter05/03redbridge.md
       - chapter05/04redjuntos.md
+      - chapter05/05accesoexterno.md
     - 6. Múltiple contenedores: 
       - chapter06/README.md
       - chapter06/02docker-compose.md
