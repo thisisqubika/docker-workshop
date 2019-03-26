@@ -11,14 +11,14 @@ Para mantener datos fuera del contenedor existen tres posibilidades:
 	- storage de objetos
 	- bases de datos
 2. Filesystem del Host
-  - bind mount
-  - volumes (docker volume) 
+	- bind mount
+	- volumes (docker volume) 
 3. Memoria del Host (temporal)
-  - tmpfs mount
+	- tmpfs mount
 
 ## Imágenes y volúmenes
 
-`Los volúmenes, los bind mount y los tmpfs mount no son parte de las imágenes que se puedan crear`
+Los volúmenes, los bind mount y los tmpfs mount no son parte de las imágenes que se puedan crear
 
 ---
 

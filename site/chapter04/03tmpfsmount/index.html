@@ -698,7 +698,9 @@
 <p>Permite el asignar espacio de memoria del host como filesytem temporal del contenedor.</p>
 <p>En este caso el filesystem es externo al contenedor y es efímero pues se eliminará inclusive <em>cuando el contenedor se detenga</em>. Y no se pueden compartir entre contenedores corriendo.</p>
 <p>El objetivo de tmpfs mounts es guardar datos sensibles o temporales que no se persisten en la capa de escritura (chroot disponible desde el host).  </p>
-<p><code>Solamente disponibles en Linux</code> </p>
+<blockquote>
+<p>Solamente disponibles en Linux</p>
+</blockquote>
 <p>Por ejemplo:</p>
 <pre><code>docker run -it --name tmpA --tmpfs /app alpine sh
 </code></pre>

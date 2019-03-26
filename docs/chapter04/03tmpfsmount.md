@@ -7,7 +7,7 @@ En este caso el filesystem es externo al contenedor y es efímero pues se elimin
 
 El objetivo de tmpfs mounts es guardar datos sensibles o temporales que no se persisten en la capa de escritura (chroot disponible desde el host).  
 
-`Solamente disponibles en Linux` 
+> Solamente disponibles en Linux
 
 Por ejemplo:
 
