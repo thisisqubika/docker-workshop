@@ -6,11 +6,11 @@ _Bind mount_ es la forma dar permanencia a los datos de disco del contenedor.
 
 El _bind mount_ se especifica en el momento de lanzar el contenedor y permite realizar los procesos de respaldo, migración, etc. con herramientas fuera de docker.
 
-Existen dos tipos de montado bind disponible para contenedores:
-
 ## --volume | -v
 
-Permite apuntar _una ruta_ de carpeta o de archivo del host y presentarlo dentro del contenedor en un punto de montado.  
+### Carpeta
+
+Permite apuntar _una ruta_ de carpeta del host y presentarlo dentro del contenedor en un punto de montado.  
 
 `-v path-host:path-container`
 
@@ -25,6 +25,16 @@ Esto hará que la carpeta del host `/opt/website` quede presentada como la carpe
 El atributo `:ro` hará que para el contenedor sea un espacio de solo lectura.
 
 Otro contenedor puede ser lanzado con la misma opción de montado (`-v`) para reutilizar los datos generados por el primer contenedor.
+
+### Archivo
+
+Permite presentar _una archivo_ del host dentro del contenedor
+
+`-v path-to-file:file-in-container`
+
+```
+docker container run --name web-nginx -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -d nginx
+```
 
 ---
 

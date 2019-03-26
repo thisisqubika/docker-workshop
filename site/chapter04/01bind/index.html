@@ -516,6 +516,26 @@
     --volume | -v
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carpeta" title="Carpeta" class="md-nav__link">
+    Carpeta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo" title="Archivo" class="md-nav__link">
+    Archivo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -754,6 +774,26 @@
     --volume | -v
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carpeta" title="Carpeta" class="md-nav__link">
+    Carpeta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo" title="Archivo" class="md-nav__link">
+    Archivo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -804,9 +844,9 @@
 <p>Bind mount permite usar una carpeta (o archivo) del host que es presentada en el espacio de filesystem del contenedor mediante la técnica de montado bind (<code>mount -o bind</code>) de Linux.</p>
 <p><em>Bind mount</em> es la forma dar permanencia a los datos de disco del contenedor.</p>
 <p>El <em>bind mount</em> se especifica en el momento de lanzar el contenedor y permite realizar los procesos de respaldo, migración, etc. con herramientas fuera de docker.</p>
-<p>Existen dos tipos de montado bind disponible para contenedores:</p>
 <h2 id="-volume-v">--volume | -v</h2>
-<p>Permite apuntar <em>una ruta</em> de carpeta o de archivo del host y presentarlo dentro del contenedor en un punto de montado.  </p>
+<h3 id="carpeta">Carpeta</h3>
+<p>Permite apuntar <em>una ruta</em> de carpeta del host y presentarlo dentro del contenedor en un punto de montado.  </p>
 <p><code>-v path-host:path-container</code></p>
 <p>Y se configura al lanzar el contenedor:</p>
 <pre><code>docker container run --name web-nginx -v /opt/website:/usr/share/nginx/html:ro -d nginx
@@ -815,6 +855,12 @@
 <p>Esto hará que la carpeta del host <code>/opt/website</code> quede presentada como la carpeta <code>/usr/share/nginx/html</code> en el contenedor.</p>
 <p>El atributo <code>:ro</code> hará que para el contenedor sea un espacio de solo lectura.</p>
 <p>Otro contenedor puede ser lanzado con la misma opción de montado (<code>-v</code>) para reutilizar los datos generados por el primer contenedor.</p>
+<h3 id="archivo">Archivo</h3>
+<p>Permite presentar <em>una archivo</em> del host dentro del contenedor</p>
+<p><code>-v path-to-file:file-in-container</code></p>
+<pre><code>docker container run --name web-nginx -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -d nginx
+</code></pre>
+
 <hr />
 <h2 id="ejercicios">Ejercicios:</h2>
 <h3 id="1">1.</h3>
