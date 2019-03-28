@@ -36,7 +36,7 @@
     
     
       
-        <title>05entornos - Docker - Guía del Usuario</title>
+        <title>Estructura con entornos - Docker - Guía del Usuario</title>
       
     
     
@@ -105,7 +105,7 @@
                 Docker - Guía del Usuario
               </span>
               <span class="md-header-nav__topic">
-                05entornos
+                Estructura con entornos
               </span>
             
           
@@ -677,8 +677,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../04basica/" title="04basica" class="md-nav__link">
-      04basica
+    <a href="../04basica/" title="Estructura básica" class="md-nav__link">
+      Estructura básica
     </a>
   </li>
 
@@ -694,29 +694,26 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        05entornos
+        Estructura con entornos
       </label>
     
-    <a href="./" title="05entornos" class="md-nav__link md-nav__link--active">
-      05entornos
+    <a href="./" title="Estructura con entornos" class="md-nav__link md-nav__link--active">
+      Estructura con entornos
     </a>
     
       
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#estructura-con-entornos" title="Estructura con entornos" class="md-nav__link">
-    Estructura con entornos
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#development" title="Development" class="md-nav__link">
@@ -754,8 +751,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../about/" title="About" class="md-nav__link">
-      About
+    <a href="../../about/" title="Sobre esta guía" class="md-nav__link">
+      Sobre esta guía
     </a>
   </li>
 
@@ -774,16 +771,11 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#estructura-con-entornos" title="Estructura con entornos" class="md-nav__link">
-    Estructura con entornos
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#development" title="Development" class="md-nav__link">
@@ -816,9 +808,7 @@
               
                 
                 
-                  <h1>05entornos</h1>
-                
-                <h2 id="estructura-con-entornos">Estructura con entornos</h2>
+                <h1 id="estructura-con-entornos">Estructura con entornos</h1>
 <p>Ahora vemos el proyecto <strong>consola-control</strong> pero mantenido en dos entornos:</p>
 <ul>
 <li>development</li>
@@ -876,7 +866,6 @@ api:
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
-EXPOSE 8080
 CMD [ &quot;npm&quot;, &quot;start&quot; ]
 </code></pre>
 
@@ -913,6 +902,15 @@ networks:
 </code></pre>
 
 <p>Y el archivo <code>production/api/Dockerfile</code> es el mismo del capítulo anterior, donde todo el código es COPY a la imagen antes de lanzarla.</p>
+<pre><code>FROM node:8
+MAINTAINER Great Dev &lt;gd@fix-it.com&gt;
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD [ &quot;npm&quot;, &quot;start&quot; ]
+</code></pre>
                 
                   
                 
@@ -933,7 +931,7 @@ networks:
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../04basica/" title="04basica" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../04basica/" title="Estructura básica" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -942,19 +940,19 @@ networks:
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                04basica
+                Estructura básica
               </span>
             </div>
           </a>
         
         
-          <a href="../../about/" title="About" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../about/" title="Sobre esta guía" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                About
+                Sobre esta guía
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

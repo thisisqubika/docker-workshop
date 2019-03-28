@@ -1,4 +1,4 @@
-## Estructura básica
+# Estructura básica
 
 Una estructura básica para un sitio con una aplicación que es un api de un proyecto llamado **consola-control** llevaría una estructura básica:
 

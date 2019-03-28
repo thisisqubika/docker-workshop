@@ -45,5 +45,5 @@ nav:
       - chapter06/03docker-compose-workflow.md
       - chapter06/04basica.md
       - chapter06/05entornos.md
-    - About: about.md
+    - Sobre esta guía: about.md
 

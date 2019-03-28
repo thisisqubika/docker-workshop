@@ -1,4 +1,4 @@
-## Estructura con entornos
+# Estructura con entornos
 
 Ahora vemos el proyecto **consola-control** pero mantenido en dos entornos:
 
@@ -66,7 +66,6 @@ FROM node:8
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
-EXPOSE 8080
 CMD [ "npm", "start" ]
 ```
 
@@ -108,6 +107,17 @@ networks:
 ```
 
 Y el archivo `production/api/Dockerfile` es el mismo del capítulo anterior, donde todo el código es COPY a la imagen antes de lanzarla.
+
+```
+FROM node:8
+MAINTAINER Great Dev <gd@fix-it.com>
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD [ "npm", "start" ]
+```
 
 
 
