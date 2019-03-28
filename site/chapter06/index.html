@@ -649,9 +649,52 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Multiple contenedores
+      </label>
+    
     <a href="./" title="Multiple contenedores" class="md-nav__link md-nav__link--active">
       Multiple contenedores
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejecutar-multiples-contenedores-vinculados" title="Ejecutar múltiples contenedores vinculados" class="md-nav__link">
+    Ejecutar múltiples contenedores vinculados
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" title="LOGS" class="md-nav__link">
+    LOGS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#borrar-aplicacion" title="Borrar aplicación" class="md-nav__link">
+    Borrar aplicación
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -664,6 +707,42 @@
   <li class="md-nav__item">
     <a href="02docker-compose/" title="docker-compose" class="md-nav__link">
       docker-compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="03docker-compose-workflow/" title="Docker compose workflow" class="md-nav__link">
+      Docker compose workflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="04basica/" title="04basica" class="md-nav__link">
+      04basica
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="05entornos/" title="05entornos" class="md-nav__link">
+      05entornos
     </a>
   </li>
 
@@ -702,6 +781,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejecutar-multiples-contenedores-vinculados" title="Ejecutar múltiples contenedores vinculados" class="md-nav__link">
+    Ejecutar múltiples contenedores vinculados
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" title="LOGS" class="md-nav__link">
+    LOGS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#borrar-aplicacion" title="Borrar aplicación" class="md-nav__link">
+    Borrar aplicación
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -714,49 +823,56 @@
                 
                 
                 <h1 id="multiple-contenedores">Multiple contenedores</h1>
-<p>Ejecutar dos containers vinculados</p>
-<pre><code>$ docker image pull mariadb:latest
+<p>Como los contenedores están pensados para ejecutar un único proceso/daemon lo normal es utilizar múltiples contenedores para cada proceso que requiere nuestra aplicación. </p>
+<p>La tendencia es descomponer nuestra aplicación en <em>microservicios</em> que permiten desarrollos independientes y gestión independientes, que se levantan orquestados en conjunto para que la aplicación quede corriendo.</p>
+<h2 id="ejecutar-multiples-contenedores-vinculados">Ejecutar múltiples contenedores vinculados</h2>
+<p>El siguiente ejemplo muestra un contenedor la aplicación Wordpress en múltiples contenedores:
+<em> Contenedor <code>wordpress</code> levanta un servicio web y el intérprete PHP.
+</em> Contenedor <code>wpdb</code> corre la base de datos MySQL requerida por Wordpress para archivar sus datos</p>
+<pre><code>docker network create wp 
 
-$ docker container run -p 3306:3306 \
---name mysql \
--e MYSQL_ROOT_PASSWORD=pass123 \
--d mariadb:latest
-
-$ docker image pull nimmis/apache-php5
-
-$ docker container run -d \
--p 80:80 \
---name apache2 \
---link mysql \
-nimmis/apache-php5
-
-$ docker exec -it apache2 bash -c \
-&quot;echo '&lt;?php phpinfo() ?&gt;' &gt; /var/www/html/test.php&quot;
-
-$ curl http://localhost/test.php
-
-$ docker exec -it apache2 /bin/bash
-/# apt-get update &amp;&amp; apt-get install -y mysql-client
-/# mysql -u root -ppass123 -h mysql 
-</code></pre>
-
-<pre><code>mkdir -p wp/database wp/html; cd wp
+mkdir -p wp/database wp/html; cd wp
 
 docker run \
 -e MYSQL_ROOT_PASSWORD=rootpass \
--e MYSQL_DATABASE=wordpress \
---name wordpressdb \
+--name wpdb \
+--network wp \
 -v &quot;$PWD/database&quot;:/var/lib/mysql \
 -d mariadb:latest
 
 docker run \
 -e WORDPRESS_DB_PASSWORD=rootpass \
+-e WORDPRESS_DB_HOST=wpdb \
 --name wordpress \
---link wordpressdb:mysql \
--p 8082:80 \
+--network wp \
+-p 8081:80 \
 -v &quot;$PWD/html&quot;:/var/www/html \
 -d wordpress
 </code></pre>
+
+<p>En el siguiente ejemplo se muestra cómo sería el arranque si se utilizara el <em>bridge default</em> utilizando la opción <code>--link</code>:</p>
+<pre><code>docker run \
+-e WORDPRESS_DB_PASSWORD=rootpass \
+--name wordpress \
+--link wpdb:mysql \
+-p 8081:80 \
+-v &quot;$PWD/html&quot;:/var/www/html \
+-d wordpress
+</code></pre>
+
+<h2 id="logs">LOGS</h2>
+<p>Se puede verificar el funcionamiento de un contenedor revisando su log:</p>
+<pre><code>docker logs wordpress
+</code></pre>
+
+<h2 id="borrar-aplicacion">Borrar aplicación</h2>
+<p>Y para borrar estos aplicación debemos ejecutar:</p>
+<pre><code>docker container stop wordpress wpdb
+docker container rm wordpress wpdb
+docker network rm wp  
+</code></pre>
+
+<p>Y los datos quedarán en las carpetas montadas.</p>
                 
                   
                 

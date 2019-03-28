@@ -680,6 +680,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#up" title="UP" class="md-nav__link">
+    UP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ps" title="PS" class="md-nav__link">
+    PS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stop-start-restart" title="STOP / START / RESTART" class="md-nav__link">
+    STOP / START / RESTART
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#down" title="DOWN" class="md-nav__link">
+    DOWN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-docker-no-disponibles" title="Comandos docker no disponibles" class="md-nav__link">
+    Comandos docker no disponibles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ejercicios" title="Ejercicios" class="md-nav__link">
     Ejercicios
   </a>
@@ -690,6 +725,13 @@
           <li class="md-nav__item">
   <a href="#1" title="1." class="md-nav__link">
     1.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" title="2." class="md-nav__link">
+    2.
   </a>
   
 </li>
@@ -707,6 +749,42 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03docker-compose-workflow/" title="Docker compose workflow" class="md-nav__link">
+      Docker compose workflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04basica/" title="04basica" class="md-nav__link">
+      04basica
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05entornos/" title="05entornos" class="md-nav__link">
+      05entornos
+    </a>
   </li>
 
         
@@ -748,6 +826,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#up" title="UP" class="md-nav__link">
+    UP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ps" title="PS" class="md-nav__link">
+    PS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stop-start-restart" title="STOP / START / RESTART" class="md-nav__link">
+    STOP / START / RESTART
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#down" title="DOWN" class="md-nav__link">
+    DOWN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-docker-no-disponibles" title="Comandos docker no disponibles" class="md-nav__link">
+    Comandos docker no disponibles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ejercicios" title="Ejercicios" class="md-nav__link">
     Ejercicios
   </a>
@@ -758,6 +871,13 @@
           <li class="md-nav__item">
   <a href="#1" title="1." class="md-nav__link">
     1.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" title="2." class="md-nav__link">
+    2.
   </a>
   
 </li>
@@ -785,62 +905,107 @@
                 
                 
                 <h1 id="docker-compose">docker-compose</h1>
-<p>El utilitario <code>docker-compose</code> primate definir y correr ambientes de multiples contenedores con Docker.</p>
-<p>Creamos un directorio para nuestro entorno:</p>
-<pre><code>$ mkdir wpdc; cd wpdc
-</code></pre>
-
-<p>Se basa en el archivo <code>docker-compose.yml</code></p>
-<pre><code>version: '2'
+<p><em>Compose</em> es una herramienta que define y corre aplicaciones basadas en múltiples contenedores con Docker.</p>
+<p>La definición se realiza en un único archivo y se lanzan los múltiples contenedores en un único comando, que realiza todo lo que se tenga que hacer para correr los múltiples contenedores.</p>
+<p>Utilizando el ejemplo de Wordpress de la sección anterior definen los servicios y redes en un único <code>docker-compose.yml</code></p>
+<pre><code>version: '3'
 
 services:
 
-  wordpressdb:
+# docker run \
+# -e MYSQL_ROOT_PASSWORD=rootpass \
+# --name wpdb \
+# --network wp \
+# -v &quot;$PWD/database&quot;:/var/lib/mysql \
+# -d mariadb:latest
+
+  wpdb:
     image: mariadb:latest
+    container_name: wpdb
     volumes:
-      - ../wp/database:/var/lib/mysql
+      - $PWD/database:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: wordpress
+      - MYSQL_ROOT_PASSWORD=rootpass
+    networks:
+      - wp
+
+# docker run \
+# -e WORDPRESS_DB_PASSWORD=rootpass \
+# -e WORDPRESS_DB_HOST=wpdb \
+# --name wordpress \
+# --network wp \
+# -p 8081:80 \
+# -v &quot;$PWD/html&quot;:/var/www/html \
+# -d wordpress
 
   wordpress:
     depends_on:
-      - wordpressdb
+      - wpdb
     image: wordpress
+    container_name: wordpress
+    networks:
+      - wp
     ports:
-      - &quot;8082:80&quot;
+      - &quot;8081:80&quot;
     volumes:
-      - ../wp/html:/var/www/html
+      - $PWD/html:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: wordpressdb:3306
-      WORDPRESS_DB_PASSWORD: rootpass
-    links:
-      - wordpressdb:mysql
+      - WORDPRESS_DB_PASSWORD=rootpass
+      - WORDPRESS_DB_HOST=wpdb
+
+networks:
+  wp:   
 </code></pre>
 
-<p>Y levantamos nuestro entorno con up:</p>
+<h2 id="up">UP</h2>
+<p>Se lanza la aplicación con la opción <code>up</code> y opcionalmente <code>-d</code> para que ejecute <em>detached</em> de la consola:</p>
 <pre><code>$ docker-compose up -d
-Creating network &quot;wpdc_default&quot; with the default driver
-Creating wpdc_wordpressdb_1
-Creating wpdc_wordpress_1
+Creating network &quot;wp_wp&quot; with the default driver
+Creating wpdb ...
+Creating wpdb ... done
+Creating wordpress ...
+Creating wordpress ... done
 </code></pre>
 
+<h2 id="ps">PS</h2>
 <pre><code>$ docker-compose ps
-       Name                     Command               State          Ports
-----------------------------------------------------------------------------------
-wpdc_wordpress_1     docker-entrypoint.sh apach ...   Up      0.0.0.0:8082-&gt;80/tcp
-wpdc_wordpressdb_1   docker-entrypoint.sh mysqld      Up      3306/tcp
+  Name                 Command               State          Ports
+-------------------------------------------------------------------------
+wordpress   docker-entrypoint.sh apach ...   Up      0.0.0.0:8081-&gt;80/tcp
+wpdb        docker-entrypoint.sh mysqld      Up      3306/tcp
 </code></pre>
 
+<h2 id="stop-start-restart">STOP / START / RESTART</h2>
+<p>Compose nos permite detener, iniciar o reiniciar nuestra aplicación en múltiples contenedores con un único comando</p>
+<h2 id="down">DOWN</h2>
+<p>La opción <code>down</code> detiene la aplicación y borra todos los recursos definidos en el <code>docker-compose.yml</code></p>
+<pre><code>$ docker-compose down
+Stopping wordpress ... done
+Stopping wpdb      ... done
+Removing wordpress ... done
+Removing wpdb      ... done
+Removing network wp_wp
+</code></pre>
+
+<h2 id="comandos-docker-no-disponibles">Comandos docker no disponibles</h2>
+<p>Existen comandos docker que <strong>no están disponibles</strong> para usar en <code>docker-compose</code>, esos comandos son:</p>
+<ul>
+<li>Los comandos de administración como: <code>save, search, images, import, export, tag, history</code></li>
+<li>Los comandos de interacción con el usuario como <code>attach, exec, login, wait</code></li>
+</ul>
+<hr />
 <h2 id="ejercicios">Ejercicios</h2>
 <h3 id="1">1.</h3>
-<p>Cree un <code>docker-compose.yml</code> para levantar una aplicación tomcat de ejemplo <a href="https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/">Sample Application</a></p>
-<p>Basados en la imagen <a href="https://hub.docker.com/_/tomcat/">tomcat</a> que escucha en el puerto 8080</p>
+<p>Basados en la imagen <a href="https://hub.docker.com/_/tomcat/">tomcat</a> que escucha en el puerto 8080.</p>
+<p>Crear. un <code>docker-compose.yml</code> para levantar una aplicación tomcat del ejemplo <a href="https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/">Sample Application</a></p>
+<h3 id="2">2.</h3>
+<p>Utilizando la aplicación <em>cloud native</em> <strong>traefik</strong> configurar un proxy reverso para la aplicación del ejercicio <strong>1</strong> que escuche en el puerto 80 (u otro que prefiera)</p>
+<p>Imagen: <a href="https://hub.docker.com/_/traefik">traefik:latest</a></p>
 <hr />
 <p>Referencias:</p>
 <ul>
-<li><a href="https://docs.docker.com/compose/overview/">https://docs.docker.com/compose/overview/</a></li>
-<li><a href="https://docs.docker.com/compose/compose-file/compose-file-v2/">https://docs.docker.com/compose/compose-file/compose-file-v2/</a></li>
+<li><a href="https://docs.docker.com/compose/overview/">Overview of Docker Compose</a></li>
+<li><a href="https://docs.docker.com/compose/compose-file/">Compose file version 3 reference</a></li>
 </ul>
                 
                   
@@ -877,13 +1042,13 @@ wpdc_wordpressdb_1   docker-entrypoint.sh mysqld      Up      3306/tcp
           </a>
         
         
-          <a href="../../about/" title="About" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../03docker-compose-workflow/" title="Docker compose workflow" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                About
+                Docker compose workflow
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

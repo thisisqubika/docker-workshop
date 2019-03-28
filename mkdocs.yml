@@ -42,5 +42,8 @@ nav:
     - 6. Múltiple contenedores: 
       - chapter06/README.md
       - chapter06/02docker-compose.md
+      - chapter06/03docker-compose-workflow.md
+      - chapter06/04basica.md
+      - chapter06/05entornos.md
     - About: about.md
 

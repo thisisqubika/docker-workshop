@@ -1,73 +1,129 @@
 # docker-compose
 
-El utilitario `docker-compose` primate definir y correr ambientes de multiples contenedores con Docker.
+_Compose_ es una herramienta que define y corre aplicaciones basadas en múltiples contenedores con Docker.
 
-Creamos un directorio para nuestro entorno:
+La definición se realiza en un único archivo y se lanzan los múltiples contenedores en un único comando, que realiza todo lo que se tenga que hacer para correr los múltiples contenedores.
 
-```
-$ mkdir wpdc; cd wpdc
-```
-
-
-Se basa en el archivo `docker-compose.yml`
+Utilizando el ejemplo de Wordpress de la sección anterior definen los servicios y redes en un único `docker-compose.yml`
 
 ```
-version: '2'
+version: '3'
 
 services:
 
-  wordpressdb:
+# docker run \
+# -e MYSQL_ROOT_PASSWORD=rootpass \
+# --name wpdb \
+# --network wp \
+# -v "$PWD/database":/var/lib/mysql \
+# -d mariadb:latest
+
+  wpdb:
     image: mariadb:latest
+    container_name: wpdb
     volumes:
-      - ../wp/database:/var/lib/mysql
+      - $PWD/database:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: wordpress
+      - MYSQL_ROOT_PASSWORD=rootpass
+    networks:
+      - wp
+
+# docker run \
+# -e WORDPRESS_DB_PASSWORD=rootpass \
+# -e WORDPRESS_DB_HOST=wpdb \
+# --name wordpress \
+# --network wp \
+# -p 8081:80 \
+# -v "$PWD/html":/var/www/html \
+# -d wordpress
 
   wordpress:
     depends_on:
-      - wordpressdb
+      - wpdb
     image: wordpress
+    container_name: wordpress
+    networks:
+      - wp
     ports:
-      - "8082:80"
+      - "8081:80"
     volumes:
-      - ../wp/html:/var/www/html
+      - $PWD/html:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: wordpressdb:3306
-      WORDPRESS_DB_PASSWORD: rootpass
-    links:
-      - wordpressdb:mysql
+      - WORDPRESS_DB_PASSWORD=rootpass
+      - WORDPRESS_DB_HOST=wpdb
+
+networks:
+  wp:	
 ```
 
-Y levantamos nuestro entorno con up:
+## UP
+
+Se lanza la aplicación con la opción `up` y opcionalmente `-d` para que ejecute _detached_ de la consola:
 
 ```
 $ docker-compose up -d
-Creating network "wpdc_default" with the default driver
-Creating wpdc_wordpressdb_1
-Creating wpdc_wordpress_1
+Creating network "wp_wp" with the default driver
+Creating wpdb ...
+Creating wpdb ... done
+Creating wordpress ...
+Creating wordpress ... done
 ```
+
+
+## PS
 
 ```
 $ docker-compose ps
-       Name                     Command               State          Ports
-----------------------------------------------------------------------------------
-wpdc_wordpress_1     docker-entrypoint.sh apach ...   Up      0.0.0.0:8082->80/tcp
-wpdc_wordpressdb_1   docker-entrypoint.sh mysqld      Up      3306/tcp
+  Name                 Command               State          Ports
+-------------------------------------------------------------------------
+wordpress   docker-entrypoint.sh apach ...   Up      0.0.0.0:8081->80/tcp
+wpdb        docker-entrypoint.sh mysqld      Up      3306/tcp
 ```
+
+## STOP / START / RESTART
+
+Compose nos permite detener, iniciar o reiniciar nuestra aplicación en múltiples contenedores con un único comando
+
+## DOWN
+
+La opción `down` detiene la aplicación y borra todos los recursos definidos en el `docker-compose.yml`
+
+```
+$ docker-compose down
+Stopping wordpress ... done
+Stopping wpdb      ... done
+Removing wordpress ... done
+Removing wpdb      ... done
+Removing network wp_wp
+```
+
+
+## Comandos docker no disponibles
+
+Existen comandos docker que **no están disponibles** para usar en `docker-compose`, esos comandos son:
+
+* Los comandos de administración como: `save, search, images, import, export, tag, history`
+* Los comandos de interacción con el usuario como `attach, exec, login, wait`
+
+---
 
 ## Ejercicios
 
 ### 1.
 
-Cree un `docker-compose.yml` para levantar una aplicación tomcat de ejemplo [Sample Application](https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/)
+Basados en la imagen [tomcat](https://hub.docker.com/_/tomcat/) que escucha en el puerto 8080.
 
-Basados en la imagen [tomcat](https://hub.docker.com/_/tomcat/) que escucha en el puerto 8080
+Crear. un `docker-compose.yml` para levantar una aplicación tomcat del ejemplo [Sample Application](https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/)
 
+### 2. 
+
+Utilizando la aplicación _cloud native_ **traefik** configurar un proxy reverso para la aplicación del ejercicio **1** que escuche en el puerto 80 (u otro que prefiera)
+
+Imagen: [traefik:latest](https://hub.docker.com/_/traefik)
 
 ---
 
 Referencias:
 
-* [https://docs.docker.com/compose/overview/](https://docs.docker.com/compose/overview/)
-* [https://docs.docker.com/compose/compose-file/compose-file-v2/](https://docs.docker.com/compose/compose-file/compose-file-v2/)
+* [Overview of Docker Compose](https://docs.docker.com/compose/overview/)
+* [Compose file version 3 reference](https://docs.docker.com/compose/compose-file/)
