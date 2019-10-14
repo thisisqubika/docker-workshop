@@ -6,15 +6,19 @@ Aportar a los participantes las capacidades para el uso de Docker de forma rápi
 
 ## Requisitos
 
-### a. Instalación máquina virtual
+### 1. Docker daemon y docker cliente
+
+#### a. Instalación máquina virtual
 
 [Utilizando vagrant](https://moove-it.github.io/docker-workshop/site/chapter01/03vagrant/)
 
-### b. Instalación en host (Mac)
+#### b. Instalación en host (Mac)
 
 #### Docker instalado y servicio corriendo
 
 Verificar la instalación siguiendo [este documento](https://moove-it.github.io/docker-workshop/site/chapter01/02verificar/).
+
+### 2. Orquestador docker-compose
 
 #### docker-compose instalado 
 
@@ -60,10 +64,10 @@ OpenSSL version: OpenSSL 1.1.0h  27 Mar 2018
 
 | **Sesión** | **Fecha** | **Horario** | **Temas** |
 |:--|:--|:--|:--|
-| **1** | 19/mar | 9-10 | Generalidades<br>Primeros pasos y uso básico |
-| **2** | 21/mar | 9-10 | Imágenes |
-| **3** | 26/mar | 9-10 | Storage / Volúmenes<br>Redes docker |
-| **4** | 28/mar | 9-10 | Orquestación / Multiple contenedores |
+| **1** | 15/oct | 9-11 | Generalidades<br>Primeros pasos y uso básico |
+| **2** | 17/oct | 9-11 | Imágenes |
+| **3** | 22/oct | 9-11 | Storage / Volúmenes<br>Redes docker |
+| **4** | 24/oct | 9-11 | Orquestación / Multiple contenedores |
 
 ## Metodología
 
@@ -71,7 +75,7 @@ Teórico-práctico
 
 ## Público objetivo
 
-Tú que quieres usar Docker para correr tus aplicaciones.
+Interesados en usar Docker para correr aplicaciones.
 
 ## Bibliografía
 

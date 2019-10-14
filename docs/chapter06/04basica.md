@@ -40,7 +40,8 @@ services:
       - VAR1=value
     networks: 
       - consola-control
-    depends: backend
+    depends_on:
+      - backend
     restart: always
 
   backend:
