@@ -34,7 +34,7 @@ OpenSSL version: OpenSSL 1.1.0h  27 Mar 2018
 ## Temario
 
 1. Generalidades
-	- Como funciona
+	- Entendiendo contenedores
 	- Verificar instalación
 2. Primeros pasos y uso básico
 	- Autoejecutable
@@ -58,16 +58,16 @@ OpenSSL version: OpenSSL 1.1.0h  27 Mar 2018
 	- Redes privadas entre contenedores
 6. Orquestación / Multiple contenedores
 	- Docker-compose
-	- Docker socket
+	- Orquestadores de contenedores: Intro a Kubernetes
 
 ## Carga horaria y calendario
 
 | **Sesión** | **Fecha** | **Horario** | **Temas** |
 |:--|:--|:--|:--|
-| **1** | 15/oct | 9-11 | Generalidades<br>Primeros pasos y uso básico |
-| **2** | 17/oct | 9-11 | Imágenes |
-| **3** | 22/oct | 9-11 | Storage / Volúmenes<br>Redes docker |
-| **4** | 24/oct | 9-11 | Orquestación / Multiple contenedores |
+| **1** | 20/oct | 9-11 | Generalidades<br>Primeros pasos y uso básico |
+| **2** | 22/oct | 9-11 | Imágenes |
+| **3** | 27/oct | 9-11 | Storage / Volúmenes<br>Redes docker |
+| **4** | 29/oct | 9-11 | Orquestación / Multiple contenedores |
 
 ## Metodología
 
