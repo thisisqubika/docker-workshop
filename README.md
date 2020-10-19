@@ -64,7 +64,7 @@ OpenSSL version: OpenSSL 1.1.0h  27 Mar 2018
 
 | **Sesión** | **Fecha** | **Horario** | **Temas** |
 |:--|:--|:--|:--|
-| **1** | 20/oct | 9-11 | Generalidades<br>Primeros pasos y uso básico |
+| **1** | 20/oct | 9-11 | Entendiendo contenedores<br>Verificar instalación<br>Primeros pasos y uso básico |
 | **2** | 22/oct | 9-11 | Imágenes |
 | **3** | 27/oct | 9-11 | Storage / Volúmenes<br>Redes docker |
 | **4** | 29/oct | 9-11 | Orquestación / Multiple contenedores |
@@ -84,5 +84,15 @@ De Rodolfo Pilas
 
 Publicación: [https://moove-it.github.io/docker-workshop/site/](https://moove-it.github.io/docker-workshop/site/)
 
-Repositorio: [https://github.com/moove-it/docker-workshop](https://github.com/moove-it/docker-workshop)
+### Presentaciones
+
+* [Docker workshop 01](https://slides.com/pilasguru/docker-workshop-01/live)
+* [Docker workshop 02]
+* [Docker workshop 03]
+* [Docker workshop 04]
+
+### Repositorio
+
+* [https://github.com/moove-it/docker-workshop](https://github.com/moove-it/docker-workshop)
+
 
