@@ -88,7 +88,7 @@ Publicación: [https://moove-it.github.io/docker-workshop/site/](https://moove-i
 
 * [Docker workshop 01](https://slides.com/pilasguru/docker-workshop-01/live)
 * [Docker workshop 02](https://slides.com/pilasguru/docker-workshop-02/live)
-* [Docker workshop 03]
+* [Docker workshop 03](https://slides.com/pilasguru/docker-workshop-03/live)
 * [Docker workshop 04]
 
 ### Repositorio
